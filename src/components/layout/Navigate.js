@@ -47,8 +47,8 @@ const NavManu = styled.ul`
   li {
     &:hover {
       cursor: pointer;
-      background: #44a8f4;
       border-radius: 4px;
+      font-weight: bolder;
     }
   }
   .nav-menu-list {

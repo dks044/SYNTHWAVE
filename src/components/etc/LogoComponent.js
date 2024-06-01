@@ -22,7 +22,7 @@ const LogoBlock = styled.div`
 const ImageContainer = styled.img`
   width: ${({ logoSize }) => (logoSize ? `${logoSize}px` : '50px')};
   height: ${({ logoSize }) => (logoSize ? `${logoSize}px` : '50px')};
-  animation: ${rotateAnimation} 20s linear infinite;
+  animation: ${rotateAnimation} 7s linear infinite;
 `;
 
 function LogoComponent({logoSize}){

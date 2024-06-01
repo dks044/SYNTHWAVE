@@ -41,7 +41,7 @@ function HomePage() {
             <h1><LogoText fontSize={30}/> 에 오신것을 환영합니다</h1>
           </AnimatedText>
           <AnimatedText delay={1.0}>
-            <h2>자유롭게 게시판에 글을 작성하며</h2>
+            <h2>자유롭게 게시판에 음악 리뷰 글을 작성하며</h2>
           </AnimatedText>
           <AnimatedText delay={1.5}>
             <h2>댓글로 여러 의견을 나눠보세요</h2>
