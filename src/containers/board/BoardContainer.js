@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Board from "../../components/board/Board";
 import { FloatingLabel, Form } from "react-bootstrap";
@@ -10,18 +10,19 @@ const BoatdBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 `
 const BoardTitle = styled.h1`
   font-weight: bolder;
   text-align: center;
   font-size: 50px;
+
 `
 // 검색창
 const BoardSearchBar = styled.div`
   display: flex;
   align-items: center;
-
-  width: 30%;
+  width: auto;
   height: 50px;
   border: 3px solid transparent;
   border-radius: 20px 20px 20px 20px;
@@ -48,7 +49,16 @@ const StyledSelect = styled.select`
   margin-left: 10px;
 `;
 
+
 function BoardContainer() {
+  // 뷰 모드 상태를 관리하기 위한 useState 훅 사용
+  const [viewMode, setViewMode] = useState("card");
+
+  // 라디오 버튼 변경 핸들러
+  const handleViewModeChange = (event) => {
+    setViewMode(event.target.value);
+  };
+
   return(
     <BoatdBlock>
       <BoardTitle>전체 게시글</BoardTitle>
@@ -70,7 +80,28 @@ function BoardContainer() {
           <option value="3">평점순</option>
           <option value="4">댓글순</option>
         </StyledSelect>
+        <label>
+          <input
+            type="radio"
+            name="viewMode" 
+            value="card"
+            checked={viewMode === "card"} 
+            onChange={handleViewModeChange} 
+          />
+          Card
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="viewMode" 
+            value="list"
+            checked={viewMode === "list"} 
+            onChange={handleViewModeChange} 
+          />
+          List
+        </label>
       </BoardSearchBar>
+      {/* TODO: 필터, 정렬의 VALUE를 Props로 Board에 전달 */}
       <Board />
     </BoatdBlock>
   )
