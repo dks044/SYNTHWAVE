@@ -36,6 +36,7 @@ const NavigateBlock = styled.header`
     align-items: flex-start;
     .menuToggleBtn {
       display: block;
+      color: #fab005;
     }
   }
 `;
@@ -43,17 +44,17 @@ const NavigateBlock = styled.header`
 const NavManu = styled.ul`
   list-style: none;
   display: flex;
-
   li {
     &:hover {
       cursor: pointer;
       border-radius: 4px;
       font-weight: bolder;
+
     }
   }
   .nav-menu-list {
     text-decoration: none;
-    color: white;
+    color: #fab005;
     display: block;
     padding: 10px 10px;
   }
@@ -83,7 +84,7 @@ function Navigate(){
       <NavManu isToggleOpen={isToggleOpen}>
           <li>
             <Link to={"/board"} className="nav-menu-list">
-              게시판
+              리뷰
             </Link>
           </li>
           <li>

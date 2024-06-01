@@ -3,6 +3,7 @@
     "id": 1,
     "title": "다이너마이트 - 방탄소년단",
     "author": "testData",
+    "category" : "hiphop",
     "content": "방탄소년단의 다이너마이트는 한 번 들으면 잊혀지지 않는 멜로디와 긍정적인 에너지가 가득한 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -24,6 +25,7 @@
     "id": 2,
     "title": "러버덕 - 체리블렛",
     "author": "testData",
+    "category" : "pop",
     "content": "체리블렛의 러버덕은 경쾌한 리듬과 상큼한 멜로디가 돋보이는 곡입니다. 여름과 잘 어울리는 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -34,6 +36,7 @@
     "id": 3,
     "title": "파란 봄 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 파란 봄은 따뜻한 봄날을 연상시키는 가사와 멜로디가 인상적인 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -50,6 +53,7 @@
     "id": 4,
     "title": "가을 아침 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "가을의 쓸쓸함과 아름다움을 동시에 담아낸 곡입니다. 아이유의 부드러운 목소리가 더해져 더욱 좋습니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -66,6 +70,7 @@
     "id": 5,
     "title": "시간을 달려서 - 여자친구",
     "author": "testData",
+    "category" : "pop",
     "content": "여자친구의 에너지와 청량감이 느껴지는 곡입니다. 듣고 있으면 저절로 기분이 좋아집니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -76,6 +81,7 @@
     "id": 6,
     "title": "Butter - 방탄소년단",
     "author": "testData",
+    "category" : "pop",
     "content": "방탄소년단의 Butter는 부드럽고 매끄러운 멜로디가 인상적인 곡입니다. 여름밤에 듣기 좋은 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -92,6 +98,7 @@
     "id": 7,
     "title": "LALISA - 리사",
     "author": "testData",
+    "category" : "hiphop",
     "content": "리사의 솔로 데뷔곡 LALISA는 그녀의 강렬한 매력과 에너지가 느껴지는 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -108,6 +115,7 @@
     "id": 8,
     "title": "Celebrity - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 Celebrity는 각자의 개성을 존중하자는 메시지를 담은 곡입니다. 긍정적인 에너지가 가득해요.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -124,6 +132,7 @@
     "id": 9,
     "title": "Lovesick Girls - BLACKPINK",
     "author": "testData",
+    "category" : "hiphop",
     "content": "BLACKPINK의 Lovesick Girls는 강렬한 비트와 애절한 멜로디가 돋보이는 곡입니다. 사랑의 아픔을 그린 가사가 인상적입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -145,6 +154,7 @@
     "id": 10,
     "title": "Psycho - Red Velvet",
     "author": "testData",
+    "category" : "pop",
     "content": "Red Velvet의 Psycho는 독특한 분위기와 중독성 강한 멜로디가 매력적인 곡입니다. 이들의 보컬 하모니가 돋보입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -166,6 +176,7 @@
     "id": 11,
     "title": "다이너마이트 - 방탄소년단",
     "author": "testData",
+    "category" : "hiphop",
     "content": "방탄소년단의 다이너마이트는 한 번 들으면 잊혀지지 않는 멜로디와 긍정적인 에너지가 가득한 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -187,6 +198,7 @@
     "id": 12,
     "title": "러버덕 - 체리블렛",
     "author": "testData",
+    "category" : "pop",
     "content": "체리블렛의 러버덕은 경쾌한 리듬과 상큼한 멜로디가 돋보이는 곡입니다. 여름과 잘 어울리는 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -197,6 +209,7 @@
     "id": 13,
     "title": "파란 봄 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 파란 봄은 따뜻한 봄날을 연상시키는 가사와 멜로디가 인상적인 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -213,6 +226,7 @@
     "id": 14,
     "title": "가을 아침 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "가을의 쓸쓸함과 아름다움을 동시에 담아낸 곡입니다. 아이유의 부드러운 목소리가 더해져 더욱 좋습니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -229,6 +243,7 @@
     "id": 15,
     "title": "시간을 달려서 - 여자친구",
     "author": "testData",
+    "category" : "pop",
     "content": "여자친구의 에너지와 청량감이 느껴지는 곡입니다. 듣고 있으면 저절로 기분이 좋아집니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -239,6 +254,7 @@
     "id": 16,
     "title": "Butter - 방탄소년단",
     "author": "testData",
+    "category" : "pop",
     "content": "방탄소년단의 Butter는 부드럽고 매끄러운 멜로디가 인상적인 곡입니다. 여름밤에 듣기 좋은 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -255,6 +271,7 @@
     "id": 17,
     "title": "LALISA - 리사",
     "author": "testData",
+    "category" : "hiphop",
     "content": "리사의 솔로 데뷔곡 LALISA는 그녀의 강렬한 매력과 에너지가 느껴지는 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -271,6 +288,7 @@
     "id": 18,
     "title": "Celebrity - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 Celebrity는 각자의 개성을 존중하자는 메시지를 담은 곡입니다. 긍정적인 에너지가 가득해요.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -287,6 +305,7 @@
     "id": 19,
     "title": "Lovesick Girls - BLACKPINK",
     "author": "testData",
+    "category" : "hiphop",
     "content": "BLACKPINK의 Lovesick Girls는 강렬한 비트와 애절한 멜로디가 돋보이는 곡입니다. 사랑의 아픔을 그린 가사가 인상적입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -308,6 +327,7 @@
     "id": 20,
     "title": "Psycho - Red Velvet",
     "author": "testData",
+    "category" : "pop",
     "content": "Red Velvet의 Psycho는 독특한 분위기와 중독성 강한 멜로디가 매력적인 곡입니다. 이들의 보컬 하모니가 돋보입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -329,6 +349,7 @@
     "id": 21,
     "title": "다이너마이트 - 방탄소년단",
     "author": "testData",
+    "category" : "hiphop",
     "content": "방탄소년단의 다이너마이트는 한 번 들으면 잊혀지지 않는 멜로디와 긍정적인 에너지가 가득한 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -350,6 +371,7 @@
     "id": 22,
     "title": "러버덕 - 체리블렛",
     "author": "testData",
+    "category" : "pop",
     "content": "체리블렛의 러버덕은 경쾌한 리듬과 상큼한 멜로디가 돋보이는 곡입니다. 여름과 잘 어울리는 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -360,6 +382,7 @@
     "id": 23,
     "title": "파란 봄 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 파란 봄은 따뜻한 봄날을 연상시키는 가사와 멜로디가 인상적인 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -376,6 +399,7 @@
     "id": 24,
     "title": "가을 아침 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "가을의 쓸쓸함과 아름다움을 동시에 담아낸 곡입니다. 아이유의 부드러운 목소리가 더해져 더욱 좋습니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -392,6 +416,7 @@
     "id": 25,
     "title": "시간을 달려서 - 여자친구",
     "author": "testData",
+    "category" : "pop",
     "content": "여자친구의 에너지와 청량감이 느껴지는 곡입니다. 듣고 있으면 저절로 기분이 좋아집니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -402,6 +427,7 @@
     "id": 26,
     "title": "Butter - 방탄소년단",
     "author": "testData",
+    "category" : "rnb",
     "content": "방탄소년단의 Butter는 부드럽고 매끄러운 멜로디가 인상적인 곡입니다. 여름밤에 듣기 좋은 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -418,6 +444,7 @@
     "id": 27,
     "title": "LALISA - 리사",
     "author": "testData",
+    "category" : "hiphop",
     "content": "리사의 솔로 데뷔곡 LALISA는 그녀의 강렬한 매력과 에너지가 느껴지는 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -434,6 +461,7 @@
     "id": 28,
     "title": "Celebrity - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 Celebrity는 각자의 개성을 존중하자는 메시지를 담은 곡입니다. 긍정적인 에너지가 가득해요.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -450,6 +478,7 @@
     "id": 29,
     "title": "Lovesick Girls - BLACKPINK",
     "author": "testData",
+    "category" : "hiphop",
     "content": "BLACKPINK의 Lovesick Girls는 강렬한 비트와 애절한 멜로디가 돋보이는 곡입니다. 사랑의 아픔을 그린 가사가 인상적입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -471,6 +500,7 @@
     "id": 30,
     "title": "Psycho - Red Velvet",
     "author": "testData",
+    "category" : "pop",
     "content": "Red Velvet의 Psycho는 독특한 분위기와 중독성 강한 멜로디가 매력적인 곡입니다. 이들의 보컬 하모니가 돋보입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -492,6 +522,7 @@
     "id": 31,
     "title": "Psycho - Red Velvet",
     "author": "testData",
+    "category" : "pop",
     "content": "Red Velvet의 Psycho는 독특한 분위기와 중독성 강한 멜로디가 매력적인 곡입니다. 이들의 보컬 하모니가 돋보입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -513,6 +544,7 @@
     "id": 32,
     "title": "다이너마이트 - 방탄소년단",
     "author": "testData",
+    "category" : "hiphop",
     "content": "방탄소년단의 다이너마이트는 한 번 들으면 잊혀지지 않는 멜로디와 긍정적인 에너지가 가득한 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -534,6 +566,7 @@
     "id": 33,
     "title": "러버덕 - 체리블렛",
     "author": "testData",
+    "category" : "pop",
     "content": "체리블렛의 러버덕은 경쾌한 리듬과 상큼한 멜로디가 돋보이는 곡입니다. 여름과 잘 어울리는 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -544,6 +577,7 @@
     "id": 34,
     "title": "파란 봄 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 파란 봄은 따뜻한 봄날을 연상시키는 가사와 멜로디가 인상적인 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -560,6 +594,7 @@
     "id": 35,
     "title": "가을 아침 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "가을의 쓸쓸함과 아름다움을 동시에 담아낸 곡입니다. 아이유의 부드러운 목소리가 더해져 더욱 좋습니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -576,6 +611,7 @@
     "id": 36,
     "title": "시간을 달려서 - 여자친구",
     "author": "testData",
+    "category" : "pop",
     "content": "여자친구의 에너지와 청량감이 느껴지는 곡입니다. 듣고 있으면 저절로 기분이 좋아집니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -602,6 +638,7 @@
     "id": 38,
     "title": "LALISA - 리사",
     "author": "testData",
+    "category" : "hiphop",
     "content": "리사의 솔로 데뷔곡 LALISA는 그녀의 강렬한 매력과 에너지가 느껴지는 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -618,6 +655,7 @@
     "id": 39,
     "title": "Celebrity - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 Celebrity는 각자의 개성을 존중하자는 메시지를 담은 곡입니다. 긍정적인 에너지가 가득해요.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -634,6 +672,7 @@
     "id": 40,
     "title": "Lovesick Girls - BLACKPINK",
     "author": "testData",
+    "category" : "hiphop",
     "content": "BLACKPINK의 Lovesick Girls는 강렬한 비트와 애절한 멜로디가 돋보이는 곡입니다. 사랑의 아픔을 그린 가사가 인상적입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -655,6 +694,7 @@
     "id": 41,
     "title": "Psycho - Red Velvet",
     "author": "testData",
+    "category" : "pop",
     "content": "Red Velvet의 Psycho는 독특한 분위기와 중독성 강한 멜로디가 매력적인 곡입니다. 이들의 보컬 하모니가 돋보입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -676,6 +716,7 @@
     "id": 42,
     "title": "다이너마이트 - 방탄소년단",
     "author": "testData",
+    "category" : "hiphop",
     "content": "방탄소년단의 다이너마이트는 한 번 들으면 잊혀지지 않는 멜로디와 긍정적인 에너지가 가득한 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -697,6 +738,7 @@
     "id": 43,
     "title": "러버덕 - 체리블렛",
     "author": "testData",
+    "category" : "pop",
     "content": "체리블렛의 러버덕은 경쾌한 리듬과 상큼한 멜로디가 돋보이는 곡입니다. 여름과 잘 어울리는 노래죠.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -707,6 +749,7 @@
     "id": 44,
     "title": "파란 봄 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 파란 봄은 따뜻한 봄날을 연상시키는 가사와 멜로디가 인상적인 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -723,6 +766,7 @@
     "id": 45,
     "title": "가을 아침 - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "가을의 쓸쓸함과 아름다움을 동시에 담아낸 곡입니다. 아이유의 부드러운 목소리가 더해져 더욱 좋습니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -739,6 +783,7 @@
     "id": 46,
     "title": "시간을 달려서 - 여자친구",
     "author": "testData",
+    "category" : "pop",
     "content": "여자친구의 에너지와 청량감이 느껴지는 곡입니다. 듣고 있으면 저절로 기분이 좋아집니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [],
@@ -765,6 +810,7 @@
     "id": 48,
     "title": "LALISA - 리사",
     "author": "testData",
+    "category" : "hiphop",
     "content": "리사의 솔로 데뷔곡 LALISA는 그녀의 강렬한 매력과 에너지가 느껴지는 곡입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -781,6 +827,7 @@
     "id": 49,
     "title": "Celebrity - 아이유",
     "author": "testData",
+    "category" : "rnb",
     "content": "아이유의 Celebrity는 각자의 개성을 존중하자는 메시지를 담은 곡입니다. 긍정적인 에너지가 가득해요.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
@@ -797,6 +844,7 @@
     "id": 50,
     "title": "Lovesick Girls - BLACKPINK",
     "author": "testData",
+    "category" : "hiphop",
     "content": "BLACKPINK의 Lovesick Girls는 강렬한 비트와 애절한 멜로디가 돋보이는 곡입니다. 사랑의 아픔을 그린 가사가 인상적입니다.",
     "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
     "comments": [
