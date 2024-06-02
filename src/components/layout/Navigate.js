@@ -44,6 +44,7 @@ const NavigateBlock = styled.header`
 const NavManu = styled.ul`
   list-style: none;
   display: flex;
+  align-items: center;
   li {
     &:hover {
       cursor: pointer;
@@ -55,7 +56,8 @@ const NavManu = styled.ul`
   .nav-menu-list {
     text-decoration: none;
     color: #fab005;
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 10px 10px;
   }
   @media screen and (max-width: 768px) {
