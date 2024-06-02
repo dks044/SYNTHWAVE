@@ -1,10 +1,10 @@
 import React from "react";
 
-function Board(){
+function Boards(){
   return(
     <>
     </>
   )
 }
 
-export default React.memo(Board);
+export default React.memo(Boards);

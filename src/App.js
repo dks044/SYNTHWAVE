@@ -3,7 +3,7 @@ import './App.css';
 import { Navigate, Route, Routes } from "react-router-dom";
 import LayoutContainer from './containers/LayoutContainer';
 import HomePage from './pages/HomePage';
-import BoardPage from './pages/board/BoardPage';
+import BoardsPage from './pages/board/BoardsPage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<LayoutContainer />} >
           <Route index element={<HomePage />} />
           {/* Board */}
-          <Route path='/board' element={<BoardPage />} />
+          <Route path='/board' element={<BoardsPage />} />
         </Route>
       </Routes>
     </>
