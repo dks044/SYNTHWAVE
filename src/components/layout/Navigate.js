@@ -76,8 +76,8 @@ function Navigate(){
   return(
     <NavigateBlock>
       <div className="nav_logo">
-          <LogoComponent logoSize={30}/>
-          <Link to={"/"} id="logoFont" className="nav-logo-link">
+          <Link to={"/"} id="logoFont" className="nav-logo-link">  
+            <LogoComponent logoSize={30}/>
             Synth Wave
           </Link>
       </div>

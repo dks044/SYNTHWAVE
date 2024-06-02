@@ -49,8 +49,9 @@ function HomePage() {
           <AnimatedLogo delay={0.5}>
             <LogoComponent logoSize={100}/>
           </AnimatedLogo>
+          <br/>
           <AnimatedText delay={1.0}>
-            <h1><LogoText fontSize={30}/> 에 오신것을 환영합니다</h1>
+            <h1><LogoText fontSize={30}/> <strong>에 오신것을 환영합니다</strong></h1>
           </AnimatedText>
           <AnimatedText delay={1.5}>
             <h2>자유롭게 게시판에 음악 리뷰 글을 작성하며</h2>
