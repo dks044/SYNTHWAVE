@@ -4,7 +4,8 @@ import Boards from "../../components/board/Boards";
 import { FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {getBoards} from "../../modules/board/board";
-
+import './board.css';
+import { Pagination } from "react-bootstrap";
 
 const BoatdBlock = styled.div`
   padding: 1% 50px;
@@ -57,6 +58,10 @@ const StyledSelect = styled.select`
   margin-left: 5px;
 `;
 
+const PaginationBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
 
 function BoardContainer() {
   const loading = useSelector(
@@ -77,6 +82,8 @@ function BoardContainer() {
   // 라디오 버튼 변경 핸들러
   const handleViewModeChange = (event) => {
     setViewMode(event.target.value);
+    if(event.target.value === 'card') setMaxPageNumberLimit(5);
+    if(event.target.value === 'list') setMaxPageNumberLimit(10);
   };
 
   //검색, 필터, 정렬
@@ -128,24 +135,44 @@ function BoardContainer() {
 
     return filterSortData;
   };
-
+  //정렬된 데이터
   const filteredAndSortedData = data ? filterAndSortData(data) : [];
+
+  // 페이지네이션 로직
+  const [pageNum, setPageNum] = useState(0);
+  const [maxPageNumberLimit,setMaxPageNumberLimit] = useState(5); // 한 번에 보여줄 최대 페이지 번호 개수
+  const itemsPerPage = viewMode === 'card' ? 5 : 10;
+  const totalPages = data && data ? Math.ceil(data.length / itemsPerPage) : 0;
+  const paginationRange = 2; // 현재 페이지 양옆으로 보여줄 페이지 번호 개수
+
+  let pages = [];
+  let startPage = Math.max(pageNum - paginationRange, 0);
+  let endPage = Math.min(startPage + maxPageNumberLimit - 1, totalPages - 1);
+
+  if (totalPages > maxPageNumberLimit && pageNum + paginationRange >= totalPages) {
+    startPage = totalPages - maxPageNumberLimit;
+    endPage = totalPages - 1;
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    pages.push(i);
+  }
 
   return(
     <BoatdBlock>
       <BoardTitle>전체 게시글</BoardTitle>
       <BoardSearchBar>
-        <SearchInput placeholder="Search" type="search" onChange={onChangeKeyWord()}/>
+        <SearchInput placeholder="Search" type="search" onChange={onChangeKeyWord}/>
         <StyledFaSearch>
           <FaSearch size={20}/>
         </StyledFaSearch>
-        <StyledSelect onChange={onChangeFilter()}>
+        <StyledSelect onChange={onChangeFilter}>
           <option value="">필터</option>
           <option value="hiphop">HipHop</option>
           <option value="rnb">R&B</option>
           <option value="pop">POP</option>
         </StyledSelect>
-        <StyledSelect onChange={onChangeSort()}>
+        <StyledSelect onChange={onChangeSort}>
           <option value="">정렬</option>
           <option value="최신순">최신순</option>
           <option value="오래된순">오래된순</option>
@@ -176,6 +203,33 @@ function BoardContainer() {
       {/* TODO: 뷰모드, 필터, 정렬의 VALUE를 Props로 Board에 전달 */}
       {/* TODO: 정렬된 데이터 props로 전달 */}
       <Boards boards={filteredAndSortedData} viewMode={viewMode} />
+      <PaginationBlock>
+        <Pagination className="custom-pagination">
+            {pageNum > 0 && <Pagination.Prev onClick={() => setPageNum(pageNum - 1)} />}
+            
+            {startPage > 0 && (
+              <>
+                <Pagination.Item onClick={() => setPageNum(0)}>1</Pagination.Item>
+                {startPage > 1 && <Pagination.Ellipsis />}
+              </>
+            )}
+
+            {pages.map(page => (
+              <Pagination.Item key={page} active={page === pageNum} onClick={() => setPageNum(page)}>
+                {page + 1}
+              </Pagination.Item>
+            ))}
+
+            {endPage < totalPages - 1 && (
+              <>
+                {endPage < totalPages - 2 && <Pagination.Ellipsis />}
+                <Pagination.Item onClick={() => setPageNum(totalPages - 1)}>{totalPages}</Pagination.Item>
+              </>
+            )}
+            
+            {pageNum < totalPages - 1 && <Pagination.Next onClick={() => setPageNum(pageNum + 1)} />}
+        </Pagination>
+      </PaginationBlock>
     </BoatdBlock>
   )
 }

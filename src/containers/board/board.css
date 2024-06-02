@@ -1,0 +1,6 @@
+/* 페이지네이션 버튼 원형*/
+.custom-pagination .page-item .page-link {
+  border-radius: 80% !important;
+  color:black;
+}
+
