@@ -59,8 +59,11 @@ const StyledSelect = styled.select`
 `;
 
 const PaginationBlock = styled.div`
+  width: auto;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 `
 
 function BoardContainer() {
@@ -135,8 +138,7 @@ function BoardContainer() {
 
     return filterSortData;
   };
-  //정렬된 데이터
-  const filteredAndSortedData = data ? filterAndSortData(data) : [];
+
 
   // 페이지네이션 로직
   const [pageNum, setPageNum] = useState(0);
@@ -157,6 +159,10 @@ function BoardContainer() {
   for (let i = startPage; i <= endPage; i++) {
     pages.push(i);
   }
+
+  //정렬된 데이터 및 페이징 처리
+  const filteredAndSortedData = data ? filterAndSortData(data) : [];
+  const currentPageData = filteredAndSortedData.slice(pageNum * itemsPerPage, (pageNum + 1) * itemsPerPage);
 
   return(
     <BoatdBlock>
@@ -202,7 +208,7 @@ function BoardContainer() {
       </BoardSearchBar>
       {/* TODO: 뷰모드, 필터, 정렬의 VALUE를 Props로 Board에 전달 */}
       {/* TODO: 정렬된 데이터 props로 전달 */}
-      <Boards boards={filteredAndSortedData} viewMode={viewMode} />
+      <Boards boards={currentPageData} viewMode={viewMode} />
       <PaginationBlock>
         <Pagination className="custom-pagination">
             {pageNum > 0 && <Pagination.Prev onClick={() => setPageNum(pageNum - 1)} />}

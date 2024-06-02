@@ -76,32 +76,32 @@ function Navigate(){
   }
 
   return(
-    <NavigateBlock>
-      <div className="nav_logo">
-          <Link to={"/"} id="logoFont" className="nav-logo-link">  
-            <LogoComponent logoSize={30}/>
-            Synth Wave
-          </Link>
-      </div>
-      <NavManu isToggleOpen={isToggleOpen}>
-          <li>
-            <Link to={"/board"} className="nav-menu-list">
-              리뷰
+      <NavigateBlock>
+        <div className="nav_logo">
+            <Link to={"/"} id="logoFont" className="nav-logo-link">  
+              <LogoComponent logoSize={30}/>
+              Synth Wave
             </Link>
-          </li>
-          <li>
-            <Link to={"/write"} className="nav-menu-list">
-              글쓰기
-            </Link>
-          </li>
-          <li>
-            <Link to={"/mypage"} className="nav-menu-list">
-              마이페이지
-            </Link>
-          </li>
-      </NavManu >
-      <FaBars className="menuToggleBtn" onClick={handleToggleOpen} />
-    </NavigateBlock>
+        </div>
+        <NavManu isToggleOpen={isToggleOpen}>
+            <li>
+              <Link to={"/board"} className="nav-menu-list">
+                리뷰
+              </Link>
+            </li>
+            <li>
+              <Link to={"/write"} className="nav-menu-list">
+                글쓰기
+              </Link>
+            </li>
+            <li>
+              <Link to={"/mypage"} className="nav-menu-list">
+                마이페이지
+              </Link>
+            </li>
+        </NavManu >
+        <FaBars className="menuToggleBtn" onClick={handleToggleOpen} />
+      </NavigateBlock>
   )
 }
 
