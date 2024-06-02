@@ -144,7 +144,8 @@ function BoardContainer() {
   const [pageNum, setPageNum] = useState(0);
   const [maxPageNumberLimit,setMaxPageNumberLimit] = useState(5); // 한 번에 보여줄 최대 페이지 번호 개수
   const itemsPerPage = viewMode === 'card' ? 5 : 10;
-  const totalPages = data && data ? Math.ceil(data.length / itemsPerPage) : 0;
+  //const totalPages = data && data ? Math.ceil(data.length / itemsPerPage) : 0;
+  const [totalPages, setTotalPages] = useState(0);
   const paginationRange = 2; // 현재 페이지 양옆으로 보여줄 페이지 번호 개수
 
   let pages = [];
@@ -160,9 +161,33 @@ function BoardContainer() {
     pages.push(i);
   }
 
+  //키입력 감지
+  const [keyWordChanged, setKeyWordChanged] = useState(false);
+  useEffect(() => {
+    setKeyWordChanged(keyWord.length > 0);
+  }, [keyWord]);
+
   //정렬된 데이터 및 페이징 처리
   const filteredAndSortedData = data ? filterAndSortData(data) : [];
   const currentPageData = filteredAndSortedData.slice(pageNum * itemsPerPage, (pageNum + 1) * itemsPerPage);
+  
+  useEffect(() => {
+    // 검색, 필터, 정렬이 적용된 이후의 데이터 길이를 기반으로 총 페이지 수를 다시 계산
+    const filteredAndSortedDataLength = filterAndSortData(data ? data : []).length;
+    const newTotalPages = Math.ceil(filteredAndSortedDataLength / itemsPerPage);
+  
+    // 현재 페이지 번호가 새로운 총 페이지 수를 초과하는 경우 조정
+    // 검색 조건이 변경되었을 때는 pageNum을 0으로 재설정
+    if (pageNum >= newTotalPages || keyWordChanged) { // keyWordChanged는 검색 키워드가 변경되었는지를 확인하는 논리값입니다.
+      setPageNum(0); // 검색 조건이 변경되었을 때는 첫 페이지부터 보여주도록 설정
+    } else if (pageNum >= newTotalPages) {
+      setPageNum(newTotalPages - 1);
+    }
+  
+    // 총 페이지 수 업데이트
+    setTotalPages(newTotalPages);
+  }, [keyWord, filter, sort, data]);
+
 
   return(
     <BoatdBlock>
@@ -206,8 +231,8 @@ function BoardContainer() {
           List
         </label>
       </BoardSearchBar>
-      {/* TODO: 뷰모드, 필터, 정렬의 VALUE를 Props로 Board에 전달 */}
-      {/* TODO: 정렬된 데이터 props로 전달 */}
+      <br/>
+      <h3>총 {filterAndSortData(data ? data : []).length}건의 데이터가 있습니다.</h3>
       <Boards boards={currentPageData} viewMode={viewMode} />
       <PaginationBlock>
         <Pagination className="custom-pagination">
