@@ -10,7 +10,7 @@ const BoatdBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  
 `
 const BoardTitle = styled.h1`
   font-weight: bolder;
@@ -21,6 +21,8 @@ const BoardTitle = styled.h1`
 // 검색창
 const BoardSearchBar = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  align-content: center;
   align-items: center;
   width: auto;
   height: 50px;
@@ -31,9 +33,13 @@ const BoardSearchBar = styled.div`
   linear-gradient(to right, red 0%,  orange 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
+
+  @media screen and (max-width: 768px) {
+    height: 100px;
+  }
 `
 const SearchInput = styled.input`
-  margin-left: 20px;
+  margin-left: 15px;
   border: transparent;
   height: 30px;
   width: 220px;
@@ -46,7 +52,7 @@ const StyledSelect = styled.select`
   border: 1px solid transparent;
   border-radius: 5px;
   padding: 5px;
-  margin-left: 10px;
+  margin-left: 5px;
 `;
 
 
