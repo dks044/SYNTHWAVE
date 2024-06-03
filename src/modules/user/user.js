@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { reducerUtils } from "../../lib/asyncUtils";
 
 const initialState = {
-  user : reducerUtils.initial()
-  ,
+  user : reducerUtils.initial(),
 };
 
 const userSlice = createSlice({ 
@@ -21,6 +20,18 @@ const userSlice = createSlice({
     getUserError: (state, action) => ({
       ...state,
       user: reducerUtils.error(action.error),
+    }),
+    setUser: (state) => ({
+      ...state,
+      user: reducerUtils.loading(),
+    }),
+    setUserSuccess: (state, action) => ({
+      ...state,
+      user: reducerUtils.success(action.payload),
+    }),
+    setUserError: (state, action) => ({
+      ...state,
+      user: reducerUtils.error(action.error),
     })
   }
 })
@@ -28,7 +39,10 @@ const userSlice = createSlice({
 export const {
   getUser,
   getUserSuccess,
-  getUserError
+  getUserError,
+  setUser,
+  setUserSuccess,
+  setUserError
 } = userSlice.actions;
 
 export default userSlice.reducer;
