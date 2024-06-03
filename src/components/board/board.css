@@ -1,0 +1,10 @@
+.card {
+  margin-right: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  transition: all 0.5s ;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* 위로 5px 이동 */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* 그림자를 좀 더 진하게 */
+}

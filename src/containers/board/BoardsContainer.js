@@ -85,8 +85,7 @@ function BoardContainer() {
   // 라디오 버튼 변경 핸들러
   const handleViewModeChange = (event) => {
     setViewMode(event.target.value);
-    if(event.target.value === 'card') setMaxPageNumberLimit(5);
-    if(event.target.value === 'list') setMaxPageNumberLimit(10);
+
   };
 
   //검색, 필터, 정렬
