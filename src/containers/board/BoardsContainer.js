@@ -85,7 +85,6 @@ function BoardContainer() {
   // 라디오 버튼 변경 핸들러
   const handleViewModeChange = (event) => {
     setViewMode(event.target.value);
-
   };
 
   //검색, 필터, 정렬
@@ -171,13 +170,13 @@ function BoardContainer() {
   const currentPageData = filteredAndSortedData.slice(pageNum * itemsPerPage, (pageNum + 1) * itemsPerPage);
   
   useEffect(() => {
-    // 검색, 필터, 정렬이 적용된 이후의 데이터 길이를 기반으로 총 페이지 수를 다시 계산
+    // 검색, 필터, 정렬, 또는 뷰 모드(viewMode)가 변경된 후의 데이터 길이를 기반으로 총 페이지 수를 다시 계산
     const filteredAndSortedDataLength = filterAndSortData(data ? data : []).length;
     const newTotalPages = Math.ceil(filteredAndSortedDataLength / itemsPerPage);
   
     // 현재 페이지 번호가 새로운 총 페이지 수를 초과하는 경우 조정
     // 검색 조건이 변경되었을 때는 pageNum을 0으로 재설정
-    if (pageNum >= newTotalPages || keyWordChanged) { // keyWordChanged는 검색 키워드가 변경되었는지를 확인하는 논리값입니다.
+    if (pageNum >= newTotalPages || keyWordChanged) {
       setPageNum(0); // 검색 조건이 변경되었을 때는 첫 페이지부터 보여주도록 설정
     } else if (pageNum >= newTotalPages) {
       setPageNum(newTotalPages - 1);
@@ -185,7 +184,7 @@ function BoardContainer() {
   
     // 총 페이지 수 업데이트
     setTotalPages(newTotalPages);
-  }, [keyWord, filter, sort, data]);
+  }, [keyWord, filter, sort, data, viewMode]);
 
 
   return(
