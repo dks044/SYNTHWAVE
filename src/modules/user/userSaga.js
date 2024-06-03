@@ -22,7 +22,7 @@ function* fetchUserSaga(action){
 
 function* setUserId({payload}){
   try {
-    const { id: uuid } = payload; // 수정된 부분
+    const { id: uuid } = payload; 
     const user = { id: uuid };
     yield put ({
       type: "user/setUserSuccess",
