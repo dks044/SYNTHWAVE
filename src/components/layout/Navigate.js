@@ -85,7 +85,7 @@ function Navigate(){
         </div>
         <NavManu isToggleOpen={isToggleOpen}>
             <li>
-              <Link to={"/board"} className="nav-menu-list">
+              <Link to={"/boards"} className="nav-menu-list">
                 리뷰
               </Link>
             </li>

@@ -73,10 +73,11 @@ function BoardContainer() {
   const data = useSelector((state) => state.board.boards?.data);
   const error = useSelector((state) => state.board.boards?.error);
   const dispatch = useDispatch();
-  useEffect(()=>{
+
+  useEffect(() => {
     if(data) return;
     dispatch(getBoards());
-  });
+  }, [data,dispatch]);
 
 
   // 뷰 모드 상태를 관리하기 위한 useState 훅 사용
