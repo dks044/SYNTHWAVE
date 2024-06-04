@@ -21,7 +21,7 @@ function Boards({boards, viewMode}){
             <Card.Body>
               <Card.Title>{board.title}</Card.Title>
               <Card.Text>
-                {board.content}
+                {board.content.length > 50 ? board.content.substring(0, 50) + '...' : board.content}
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
