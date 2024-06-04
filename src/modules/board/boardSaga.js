@@ -42,11 +42,26 @@ function* postBoardSaga(action) {
   }
 }
 
-
+function* fetchBoardSaga(action) {
+  try {
+    const board = yield call(boardAPI.getBoardByIdAPI, action.payload);
+    yield put({
+      type: "board/getBoardSuccess",
+      payload: board,
+    });
+  } catch (e) {
+    yield put({
+      type: "board/getBoardError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
 
 
 function* boardSaga() {
   yield takeEvery("board/getBoards", fetchBoardsSaga);
+  yield takeEvery("board/getBoard", fetchBoardSaga);
   yield takeEvery("board/postBoard", postBoardSaga);
 }
 
