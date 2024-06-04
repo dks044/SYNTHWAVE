@@ -66,7 +66,7 @@ const PaginationBlock = styled.div`
   justify-content: center;
 `
 
-function BoardContainer() {
+function BoardsContainer() {
   const loading = useSelector(
     (state) => state.board.boards?.loading
   );
@@ -104,41 +104,55 @@ function BoardContainer() {
     setSort(e.target.value);
   }
 
-  //검색&필터&정렬 함수
+  //평점계산함수
+  const calculateAverageRating = (ratingUsers) => {
+    // ratingUsers가 배열인지 확인하고, 배열이 아니면 0을 반환
+    if (!Array.isArray(ratingUsers) || !ratingUsers.length) {
+      return 0;
+    }
+    const totalRating = ratingUsers.reduce((acc, curr) => acc + curr.rating, 0);
+    return (totalRating / ratingUsers.length).toFixed(1);
+  };
+
+
   const filterAndSortData = (boards) => {
     if (!Array.isArray(boards)) {
       return [];
     }
-    let filterSortData = boards;
-
+    let filterSortData = [...boards]; // 배열 복사
+  
     if (keyWord) {
       filterSortData = filterSortData.filter(
         (board) =>
           board.title.includes(keyWord) || board.content.includes(keyWord)
       );
     }
-
+  
     if (filter) {
       filterSortData = filterSortData.filter((board) => board.category === filter);
     }
-
+  
     switch (sort) {
       case '최신순':
-        filterSortData = filterSortData.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+        filterSortData = filterSortData.slice().sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
         break;
       case '오래된순':
-        filterSortData = filterSortData.sort((a, b) => new Date(a.createDate) - new Date(b.createDate));
+        filterSortData = filterSortData.slice().sort((a, b) => new Date(a.createDate) - new Date(b.createDate));
         break;
       case '평점순':
-        filterSortData = filterSortData.sort((a, b) => b.rating - a.rating);
+        filterSortData = filterSortData.slice().sort((a, b) => {
+          const averageRatingA = calculateAverageRating(a.ratingUser);
+          const averageRatingB = calculateAverageRating(b.ratingUser);
+          return averageRatingB - averageRatingA;
+        });
         break;
       case '댓글순':
-        filterSortData = filterSortData.sort((a, b) => b.comments.length - a.comments.length);
+        filterSortData = filterSortData.slice().sort((a, b) => b.comments.length - a.comments.length);
         break;
       default:
         break;
     }
-
+  
     return filterSortData;
   };
 
@@ -171,6 +185,7 @@ function BoardContainer() {
   }, [keyWord]);
 
   // 정렬된 데이터 및 페이징 처리
+  //const filteredAndSortedData = filterAndSortData(data);
   const filteredAndSortedData = data ? filterAndSortData(data) : [];
   const currentPageData = filteredAndSortedData.length > 0 ? 
                           filteredAndSortedData.slice(pageNum * itemsPerPage, (pageNum + 1) * itemsPerPage) 
@@ -273,4 +288,4 @@ function BoardContainer() {
   )
 }
 
-export default React.memo(BoardContainer);
+export default React.memo(BoardsContainer);

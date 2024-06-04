@@ -20,7 +20,16 @@
         }
       ],
       "likes": 152,
-      "rating": 2,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-05-30T15:30:00+09:00"
     },
     {
@@ -32,7 +41,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 98,
-      "rating": 4.3,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-02-15T09:45:00+09:00"
     },
     {
@@ -50,7 +68,16 @@
         }
       ],
       "likes": 210,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-20T12:00:00+09:00"
     },
     {
@@ -68,7 +95,16 @@
         }
       ],
       "likes": 134,
-      "rating": 4.6,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-03-30T18:15:00+09:00"
     },
     {
@@ -80,7 +116,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 87,
-      "rating": 4.2,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-03-11T10:20:00+09:00"
     },
     {
@@ -98,7 +143,16 @@
         }
       ],
       "likes": 176,
-      "rating": 4.7,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-02-25T22:10:00+09:00"
     },
     {
@@ -116,7 +170,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-05T05:50:00+09:00"
     },
     {
@@ -134,7 +197,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-14T14:55:00+09:00"
     },
     {
@@ -157,7 +229,16 @@
         }
       ],
       "likes": 185,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-04-21T07:35:00+09:00"
     },
     {
@@ -180,7 +261,16 @@
         }
       ],
       "likes": 202,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 2
+        },
+        {
+          "userId": "user4",
+          "rating": 3
+        }
+      ],
       "createDate": "2024-05-09T19:40:00+09:00"
     },
     {
@@ -203,7 +293,16 @@
         }
       ],
       "likes": 152,
-      "rating": 4.5,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 2
+        },
+        {
+          "userId": "user4",
+          "rating": 3
+        }
+      ],
       "createDate": "2024-05-30T15:30:00+09:00"
     },
     {
@@ -215,7 +314,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 98,
-      "rating": 4.3,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 2
+        },
+        {
+          "userId": "user4",
+          "rating": 3
+        }
+      ],
       "createDate": "2024-02-15T09:45:00+09:00"
     },
     {
@@ -233,7 +341,16 @@
         }
       ],
       "likes": 210,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-20T12:00:00+09:00"
     },
     {
@@ -251,7 +368,16 @@
         }
       ],
       "likes": 134,
-      "rating": 4.6,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-03-30T18:15:00+09:00"
     },
     {
@@ -263,7 +389,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 87,
-      "rating": 4.2,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-03-11T10:20:00+09:00"
     },
     {
@@ -281,7 +416,16 @@
         }
       ],
       "likes": 176,
-      "rating": 4.7,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-02-25T22:10:00+09:00"
     },
     {
@@ -299,7 +443,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 2
+        }
+      ],
       "createDate": "2024-01-05T05:50:00+09:00"
     },
     {
@@ -317,7 +470,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 2
+        }
+      ],
       "createDate": "2024-01-14T14:55:00+09:00"
     },
     {
@@ -340,7 +502,16 @@
         }
       ],
       "likes": 185,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-04-21T07:35:00+09:00"
     },
     {
@@ -363,7 +534,16 @@
         }
       ],
       "likes": 202,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-05-09T19:40:00+09:00"
     },
     {
@@ -386,7 +566,16 @@
         }
       ],
       "likes": 152,
-      "rating": 4.5,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-05-30T15:30:00+09:00"
     },
     {
@@ -398,7 +587,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 98,
-      "rating": 4.3,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 2
+        },
+        {
+          "userId": "user4",
+          "rating": 3
+        }
+      ],
       "createDate": "2024-02-15T09:45:00+09:00"
     },
     {
@@ -416,7 +614,16 @@
         }
       ],
       "likes": 210,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-20T12:00:00+09:00"
     },
     {
@@ -434,7 +641,16 @@
         }
       ],
       "likes": 134,
-      "rating": 4.6,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-03-30T18:15:00+09:00"
     },
     {
@@ -446,7 +662,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 87,
-      "rating": 4.2,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 1
+        },
+        {
+          "userId": "user4",
+          "rating": 1
+        }
+      ],
       "createDate": "2024-03-11T10:20:00+09:00"
     },
     {
@@ -464,7 +689,16 @@
         }
       ],
       "likes": 176,
-      "rating": 4.7,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-02-25T22:10:00+09:00"
     },
     {
@@ -482,7 +716,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-05T05:50:00+09:00"
     },
     {
@@ -500,7 +743,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-01-14T14:55:00+09:00"
     },
     {
@@ -523,7 +775,16 @@
         }
       ],
       "likes": 185,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-04-21T07:35:00+09:00"
     },
     {
@@ -546,7 +807,16 @@
         }
       ],
       "likes": 202,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-05-09T19:40:00+09:00"
     },
     {
@@ -569,7 +839,16 @@
         }
       ],
       "likes": 202,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-05-09T19:40:00+09:00"
     },
     {
@@ -592,7 +871,16 @@
         }
       ],
       "likes": 152,
-      "rating": 4.5,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 3
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-05-30T15:30:00+09:00"
     },
     {
@@ -604,7 +892,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 98,
-      "rating": 4.3,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-02-15T09:45:00+09:00"
     },
     {
@@ -622,7 +919,16 @@
         }
       ],
       "likes": 210,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-01-20T12:00:00+09:00"
     },
     {
@@ -640,7 +946,16 @@
         }
       ],
       "likes": 134,
-      "rating": 4.6,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-03-30T18:15:00+09:00"
     },
     {
@@ -652,7 +967,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 87,
-      "rating": 4.2,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-03-11T10:20:00+09:00"
     },
     {
@@ -669,7 +993,16 @@
         }
       ],
       "likes": 176,
-      "rating": 4.7,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 4
+        }
+      ],
       "createDate": "2024-02-25T22:10:00+09:00"
     },
     {
@@ -687,7 +1020,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-01-05T05:50:00+09:00"
     },
     {
@@ -705,7 +1047,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 5
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-01-14T14:55:00+09:00"
     },
     {
@@ -728,7 +1079,16 @@
         }
       ],
       "likes": 185,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-04-21T07:35:00+09:00"
     },
     {
@@ -751,7 +1111,16 @@
         }
       ],
       "likes": 202,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-05-09T19:40:00+09:00"
     },
     {
@@ -774,7 +1143,16 @@
         }
       ],
       "likes": 152,
-      "rating": 4.5,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-05-30T15:30:00+09:00"
     },
     {
@@ -786,7 +1164,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 98,
-      "rating": 4.3,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-02-15T09:45:00+09:00"
     },
     {
@@ -804,7 +1191,16 @@
         }
       ],
       "likes": 210,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-01-20T12:00:00+09:00"
     },
     {
@@ -822,7 +1218,16 @@
         }
       ],
       "likes": 134,
-      "rating": 4.6,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-03-30T18:15:00+09:00"
     },
     {
@@ -834,7 +1239,16 @@
       "thumbnail": "https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg",
       "comments": [],
       "likes": 87,
-      "rating": 4.2,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-03-11T10:20:00+09:00"
     },
     {
@@ -851,7 +1265,16 @@
         }
       ],
       "likes": 176,
-      "rating": 4.7,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-02-25T22:10:00+09:00"
     },
     {
@@ -869,7 +1292,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-01-05T05:50:00+09:00"
     },
     {
@@ -887,7 +1319,16 @@
         }
       ],
       "likes": 199,
-      "rating": 4.9,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-01-14T14:55:00+09:00"
     },
     {
@@ -910,44 +1351,17 @@
         }
       ],
       "likes": 185,
-      "rating": 4.8,
+      "ratingUser": [
+        {
+          "userId": "user3",
+          "rating": 4
+        },
+        {
+          "userId": "user4",
+          "rating": 5
+        }
+      ],
       "createDate": "2024-04-21T07:35:00+09:00"
-    },
-    {
-      "id": 51,
-      "title": "테스트",
-      "author": "9d2f54c9-38f6-4a5b-9048-5e983b62afa2",
-      "category": "hiphop",
-      "content": "인녕하세요",
-      "comments": [],
-      "likes": 0,
-      "rating": 0,
-      "createDate": "2024-06-04T15:06:54.995Z",
-      "thumbnail": ""
-    },
-    {
-      "id": 52,
-      "title": "안녕",
-      "author": "9d2f54c9-38f6-4a5b-9048-5e983b62afa2",
-      "category": "hiphop",
-      "content": "ㅇㅇ",
-      "comments": [],
-      "likes": 0,
-      "rating": 0,
-      "createDate": "2024-06-04T15:35:11.376Z",
-      "thumbnail": ""
-    },
-    {
-      "id": 53,
-      "title": "테스트!!!",
-      "author": "9d2f54c9-38f6-4a5b-9048-5e983b62afa2",
-      "category": "hiphop",
-      "content": "ㅇㅇㅇㅇ",
-      "comments": [],
-      "likes": 0,
-      "rating": 0,
-      "createDate": "2024-06-04T16:00:21.425Z",
-      "thumbnail": ""
     }
   ]
 }

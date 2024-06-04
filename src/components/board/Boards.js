@@ -14,6 +14,15 @@ const BoardsBlock = styled.div`
 
 function Boards({boards, viewMode}){
   const navigate = useNavigate();
+  
+  const calculateAverageRating = (ratingUsers) => {
+    // ratingUsers가 배열인지 확인하고, 배열이 아니면 0을 반환
+    if (!Array.isArray(ratingUsers) || !ratingUsers.length) {
+      return 0;
+    }
+    const totalRating = ratingUsers.reduce((acc, curr) => acc + curr.rating, 0);
+    return (totalRating / ratingUsers.length).toFixed(1);
+  };
 
   return(
     <BoardsBlock>
@@ -32,7 +41,7 @@ function Boards({boards, viewMode}){
               <ListGroup.Item>글쓴이 : {board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</ListGroup.Item>
               <ListGroup.Item>댓글 수 : {board.comments && board.comments.length}</ListGroup.Item>
               <ListGroup.Item>Like : {board.likes}</ListGroup.Item>
-              <ListGroup.Item><RatingStars rating={board.rating}/> </ListGroup.Item>
+              <ListGroup.Item><RatingStars rating={parseFloat(calculateAverageRating(board.ratingUser))}/> </ListGroup.Item>
               <ListGroup.Item><SimpleDataText dateString={board.createDate}/> </ListGroup.Item>
             </ListGroup>
           </Card>
