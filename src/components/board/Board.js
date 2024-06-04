@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Badge, Button, Form, Image, InputGroup, Overlay, Tooltip } from "react-bootstrap";
+import { Badge, Button, Form, Image, InputGroup, Modal, Overlay, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
 import SimpleDataText from "../../lib/SimpleDataText"
 import RatingStars from "../../lib/RatingStars";
 import './board.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {deleteBoard} from "../../modules/board/board";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -39,18 +40,24 @@ const PatchDeleteBlock = styled.div`
 `
 
 
-function Board({board}){
+function Board({ board }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user?.data);
-  const [displayPatchDelete,setDisplayPatchDelete] = useState(false);
+  const [displayPatchDelete, setDisplayPatchDelete] = useState(false);
+  //modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   //현재 게시글의 작성자와 사용자가 맞는지 확인
-  useEffect(()=>{
+  useEffect(() => {
     let author = null; // `const` 대신 `let` 사용
-    if(board){
+    if (board) {
       author = board.author;
     }
-    if(user.id === author){
+    if (user.id === author) {
       setDisplayPatchDelete(true);
       console.log(displayPatchDelete);
     }
@@ -66,56 +73,62 @@ function Board({board}){
     return (totalRating / ratingUsers.length).toFixed(1);
   };
 
-  const [category,setCategory] = useState();
+  const [category, setCategory] = useState();
   const target = useRef(null);
 
-  useEffect(() => {
-    if(board){
-      if(board.category === 'rnb') setCategory('R&B');
-      else if(board.category === 'hiphop') setCategory('HipHop');
-      else if(board.category === 'pop') setCategory('POP');
-    }
-  },[]); 
+  //삭제함수
+  const onClickToDelete = () => {
+    dispatch(deleteBoard(board.id));
+    navigate('/boards')
+  }
 
-  if(board) return(
+  useEffect(() => {
+    if (board) {
+      if (board.category === 'rnb') setCategory('R&B');
+      else if (board.category === 'hiphop') setCategory('HipHop');
+      else if (board.category === 'pop') setCategory('POP');
+    }
+  }, []);
+
+  if (board) return (
     <BoardComponentBlock>
-      <h4><RatingStars  rating={parseFloat(calculateAverageRating(board.ratingUser))} /></h4>
+      <h4><RatingStars rating={parseFloat(calculateAverageRating(board.ratingUser))} /></h4>
       <h1>{board.title} <Badge className="customBadge" bg="info">{category}</Badge>
-      <PatchDeleteBlock displayPatchDelete={displayPatchDelete}>
+        <PatchDeleteBlock displayPatchDelete={displayPatchDelete}>
           <Button onClick={() => navigate(`/boards/${board.id}/patch`)} variant="success" size="sm" >
             수정하기
           </Button>
-          <Button className="deleteBlock" variant="danger" size="sm" >
+          <Button className="deleteBlock" variant="danger" size="sm" onClick={handleShow}>
             삭제하기
           </Button>
         </PatchDeleteBlock>
       </h1>
       <span>
-        <DateText><SimpleDataText dateString={board.createDate}/> | <strong>작성자 : {board.author}</strong></DateText>
+        <DateText><SimpleDataText dateString={board.createDate} /> | <strong>작성자 : {board.author}</strong></DateText>
       </span>
       <Image className="customImage" src={board.thumbnail} rounded />
       <StyledTextArea>
         {board.content}
-        
+
       </StyledTextArea>
-      <br/><br/><br/><br/>
+      <br /><br /><br /><br />
       <LikeAndFeedBackBar>
         <Button ref={target} variant="light" >
-          <strong>😀{board.likes}😀<br/>👍좋아요👍</strong>
+          <strong>😀{board.likes}😀<br />👍좋아요👍</strong>
         </Button>
-      <LikeAndFeedBackBarRating>
-        <Form.Select size="sm">
-              <option value={5}>⭐⭐⭐⭐⭐</option>
-              <option value={4}>⭐⭐⭐⭐</option>
-              <option value={3}>⭐⭐⭐</option>
-              <option value={2}>⭐⭐</option>
-              <option value={1}>⭐</option>
-        </Form.Select>
-        <Button variant="warning">별점주기</Button>
+        <LikeAndFeedBackBarRating>
+          <Form.Select size="sm">
+            <option value={5}>⭐⭐⭐⭐⭐</option>
+            <option value={4}>⭐⭐⭐⭐</option>
+            <option value={3}>⭐⭐⭐</option>
+            <option value={2}>⭐⭐</option>
+            <option value={1}>⭐</option>
+          </Form.Select>
+          <Button variant="warning">별점주기</Button>
         </LikeAndFeedBackBarRating >
 
       </LikeAndFeedBackBar>
-      <br/><br/>
+      <br /><br />
       <h4><strong>전체 댓글 {board.comments ? board.comments.length : 0} 개</strong></h4>
       <InputGroup className="mb-3">
         <Form.Control
@@ -129,19 +142,38 @@ function Board({board}){
           댓글달기
         </Button>
       </InputGroup>
-      <br/>
+      <br />
       <CommentsBlock>
         {board.comments && board.comments.map((comment) => (
           <div className="comments" key={comment.id}>
             <h3>
               <strong>
-                🎸{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}  
+                🎸{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}
               </strong>
             </h3>
             {comment.text}
           </div>
         ))}
       </CommentsBlock>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>게시글삭제</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          해당 게시글을 삭제하시겠습니까?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            취소
+          </Button>
+          <Button variant="danger" onClick={onClickToDelete}>삭제</Button>
+        </Modal.Footer>
+      </Modal>
     </BoardComponentBlock>
   )
 }
