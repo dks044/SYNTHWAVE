@@ -4,6 +4,7 @@ import styled from "styled-components";
 import RatingStars from "../../lib/RatingStars";
 import SimpleDataText from "../../lib/SimpleDataText";
 import './board.css';
+import { useNavigate } from "react-router-dom";
 
 const BoardsBlock = styled.div`
   display: flex;
@@ -12,14 +13,16 @@ const BoardsBlock = styled.div`
 `
 
 function Boards({boards, viewMode}){
+  const navigate = useNavigate();
+
   return(
     <BoardsBlock>
       {viewMode === 'card' && 
         boards && boards.map((board)=>(
           <Card style={{ width: '14rem' }} key={board.id}>
-            <Card.Img variant="top" src={board.thumbnail} />
+            <Card.Img className="navigate" onClick={() => navigate(`/boards/${board.id}`)} variant="top" src={board.thumbnail} />
             <Card.Body>
-              <Card.Title>{board.title}</Card.Title>
+              <Card.Title className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}</Card.Title>
               <Card.Text>
                 {board.content && (board.content.length > 50 ? board.content.substring(0, 50) + '...' : board.content)}
               </Card.Text>
@@ -53,7 +56,7 @@ function Boards({boards, viewMode}){
             <tr key={board.id}>
               <td>{board.id}</td>
               <td>{board.category}</td>
-              <td>{board.title}</td>
+              <td className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}</td>
               <td>{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</td>
               <td><SimpleDataText dateString={board.createDate}/></td>
               <td>{board.likes}</td>

@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid'; 
 import {setUser} from "./modules/user/user"
+import BoardPage from './pages/board/BoardPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
           <Route index element={<HomePage />} />
           {/* Board */}
           <Route path='/boards' element={<BoardsPage />} />
+          <Route path='/boards/:boardId' element={<BoardPage />} />
           {/* Write(작성,수정) */}
           <Route path='/write' element={<WritePage />} />
         </Route>
