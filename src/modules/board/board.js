@@ -36,6 +36,19 @@ const boardSlice = createSlice({
       board: reducerUtils.error(action.error),
     }),
 
+    postBoard: (state) => ({
+      ...state,
+      boards: reducerUtils.loading(),
+    }),
+    postBoardSuccess: (state, action) => ({
+      ...state,
+      boards: reducerUtils.success(action.payload),
+    }),
+    postBoardError: (state, action) => ({
+      ...state,
+      boards: reducerUtils.error(action.error),
+    }),
+
     patchBoard: (state) => ({
       ...state,
       boards: reducerUtils.loading(),

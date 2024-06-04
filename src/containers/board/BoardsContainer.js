@@ -92,7 +92,7 @@ function BoardsContainer() {
   //검색, 필터, 정렬
   const [keyWord,setKeyWord] = useState('');
   const [filter,setFilter] = useState('');
-  const [sort,setSort] = useState('');
+  const [sort,setSort] = useState('최신순');
   // 검색, 필터, 정렬 이벤트 핸들러
   const onChangeKeyWord = (e) => {
     setKeyWord(e.target.value);
