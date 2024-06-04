@@ -4,7 +4,7 @@ import styled from "styled-components";
 import SimpleDataText from "../../lib/SimpleDataText"
 import RatingStars from "../../lib/RatingStars";
 import './board.css';
-import { FaRegStar,FaRegStarHalfStroke,FaStar } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -33,8 +33,27 @@ const LikeAndFeedBackBarRating = styled.div`
 const CommentsBlock = styled.div`
 
 `;
+const PatchDeleteBlock = styled.div`
+  display: ${(props) => (props.displayPatchDelete ? "block" : "none")};
+`
+
 
 function Board({board}){
+  const user = useSelector((state) => state.user.user?.data);
+  const [displayPatchDelete,setDisplayPatchDelete] = useState(false);
+
+  //현재 게시글의 작성자와 사용자가 맞는지 확인
+  useEffect(()=>{
+    let author = null; // `const` 대신 `let` 사용
+    if(board){
+      author = board.author;
+    }
+    if(user.id === author){
+      setDisplayPatchDelete(true);
+      console.log(displayPatchDelete);
+    }
+  })
+
   //별점계산함수
   const calculateAverageRating = (ratingUsers) => {
     // ratingUsers가 배열인지 확인하고, 배열이 아니면 0을 반환
@@ -59,7 +78,16 @@ function Board({board}){
   if(board) return(
     <BoardComponentBlock>
       <h4><RatingStars  rating={parseFloat(calculateAverageRating(board.ratingUser))} /></h4>
-      <h1>{board.title} <Badge className="customBadge" bg="info">{category}</Badge></h1>
+      <h1>{board.title} <Badge className="customBadge" bg="info">{category}</Badge>
+      <PatchDeleteBlock displayPatchDelete={displayPatchDelete}>
+          <Button variant="success" size="sm" >
+            수정하기
+          </Button>
+          <Button className="deleteBlock" variant="danger" size="sm" >
+            삭제하기
+          </Button>
+        </PatchDeleteBlock>
+      </h1>
       <span>
         <DateText><SimpleDataText dateString={board.createDate}/> | <strong>작성자 : {board.author}</strong></DateText>
       </span>
@@ -82,10 +110,11 @@ function Board({board}){
               <option value={1}>⭐</option>
         </Form.Select>
         <Button variant="warning">별점주기</Button>
-        </LikeAndFeedBackBarRating>
+        </LikeAndFeedBackBarRating >
+
       </LikeAndFeedBackBar>
       <br/><br/>
-      <h4><strong>전체 댓글 {board.comments ? board.comments.length : 0}</strong></h4>
+      <h4><strong>전체 댓글 {board.comments ? board.comments.length : 0} 개</strong></h4>
       <InputGroup className="mb-3">
         <Form.Control
           as="textarea"
