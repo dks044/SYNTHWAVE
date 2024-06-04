@@ -43,7 +43,7 @@ function WriteComponent() {
   
     // 폼 데이터
     const newBoard = {
-      id: boardsLastIndex,
+      id: toString(boardsLastIndex),
       title,
       author: user.id,
       category,

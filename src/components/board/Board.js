@@ -14,7 +14,7 @@ const BoardComponentBlock = styled.div`
   flex-wrap: wrap;
 `
 const StyledTextArea = styled.div`
-  margin-top: 2%;
+  margin-top: 4%;
   font-size: 40;
 `
 const DateText = styled.p`
@@ -32,6 +32,16 @@ const LikeAndFeedBackBarRating = styled.div`
 `
 
 function Board({board}){
+  //별점계산함수
+  const calculateAverageRating = (ratingUsers) => {
+    // ratingUsers가 배열인지 확인하고, 배열이 아니면 0을 반환
+    if (!Array.isArray(ratingUsers) || !ratingUsers.length) {
+      return 0;
+    }
+    const totalRating = ratingUsers.reduce((acc, curr) => acc + curr.rating, 0);
+    return (totalRating / ratingUsers.length).toFixed(1);
+  };
+
   const [category,setCategory] = useState();
   const target = useRef(null);
 
@@ -45,6 +55,7 @@ function Board({board}){
 
   if(board) return(
     <BoardComponentBlock>
+      <h4><RatingStars  rating={parseFloat(calculateAverageRating(board.ratingUser))} /></h4>
       <h1>{board.title} <Badge className="customBadge" bg="info">{category}</Badge></h1>
       <span>
         <DateText><SimpleDataText dateString={board.createDate}/> | <strong>작성자 : {board.author}</strong></DateText>
@@ -56,13 +67,17 @@ function Board({board}){
       <br/><br/>
       <LikeAndFeedBackBar>
         <Button ref={target} variant="light" >
-          <strong>😀{board.likes}😀<br/>좋아요👍</strong>
+          <strong>😀{board.likes}😀<br/>👍좋아요👍</strong>
         </Button>
-        <LikeAndFeedBackBarRating>
-          <RatingStars rating={board.rating}/>
-          <Form.Select size="sm">
-            <option>별점 주기</option>
-          </Form.Select>
+      <LikeAndFeedBackBarRating>
+        <Form.Select size="sm">
+              <option value={5}>⭐⭐⭐⭐⭐</option>
+              <option value={4}>⭐⭐⭐⭐</option>
+              <option value={3}>⭐⭐⭐</option>
+              <option value={2}>⭐⭐</option>
+              <option value={1}>⭐</option>
+        </Form.Select>
+        <Button variant="warning">별점주기</Button>
         </LikeAndFeedBackBarRating>
       </LikeAndFeedBackBar>
     </BoardComponentBlock>

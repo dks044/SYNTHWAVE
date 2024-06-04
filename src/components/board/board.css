@@ -25,3 +25,7 @@
 hr {
   border: 1px solid #ccc; /* 예시로 색상과 두께를 지정합니다. */
 }
+
+.customRatingStars {
+  text-align: center;
+}
