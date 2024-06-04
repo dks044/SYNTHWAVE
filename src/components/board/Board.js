@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Badge, Button, Form, Image, Overlay, Tooltip } from "react-bootstrap";
+import { Badge, Button, Form, Image, InputGroup, Overlay, Tooltip } from "react-bootstrap";
 import styled from "styled-components";
 import SimpleDataText from "../../lib/SimpleDataText"
 import RatingStars from "../../lib/RatingStars";
@@ -9,7 +9,6 @@ import { FaRegStar,FaRegStarHalfStroke,FaStar } from "react-icons/fa6";
 const BoardComponentBlock = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
 `
@@ -26,10 +25,14 @@ const LikeAndFeedBackBar = styled.div`
   align-items: center;
 `
 const LikeAndFeedBackBarRating = styled.div`
+  margin-left: 5px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 `
+const CommentsBlock = styled.div`
+
+`;
 
 function Board({board}){
   //별점계산함수
@@ -62,9 +65,10 @@ function Board({board}){
       </span>
       <Image className="customImage" src={board.thumbnail} rounded />
       <StyledTextArea>
-        {board.content}      
+        {board.content}
+        
       </StyledTextArea>
-      <br/><br/>
+      <br/><br/><br/><br/>
       <LikeAndFeedBackBar>
         <Button ref={target} variant="light" >
           <strong>😀{board.likes}😀<br/>👍좋아요👍</strong>
@@ -80,6 +84,33 @@ function Board({board}){
         <Button variant="warning">별점주기</Button>
         </LikeAndFeedBackBarRating>
       </LikeAndFeedBackBar>
+      <br/><br/>
+      <h4><strong>전체 댓글 {board.comments ? board.comments.length : 0}</strong></h4>
+      <InputGroup className="mb-3">
+        <Form.Control
+          as="textarea"
+          className="customCommentInput"
+          placeholder="당신의 생각을 댓글로 표현하세요"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <Button variant="primary" id="button-addon2">
+          댓글달기
+        </Button>
+      </InputGroup>
+      <br/>
+      <CommentsBlock>
+        {board.comments && board.comments.map((comment) => (
+          <div className="comments" key={comment.id}>
+            <h3>
+              <strong>
+                🎸{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}  
+              </strong>
+            </h3>
+            {comment.text}
+          </div>
+        ))}
+      </CommentsBlock>
     </BoardComponentBlock>
   )
 }
