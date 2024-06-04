@@ -46,3 +46,48 @@ export async function getBoardByIdAPI(id) {
     throw error;
   }
 }
+
+
+
+//board 업데이트 API
+export const patchBoardAPI = async (id, updatedBoard, file) => {
+  // 이미지 파일이 있으면 Base64 문자열로 변환
+  const imageBase64 = file ? await convertToBase64(file) : '';
+
+  // 이미지 Base64 문자열을 updatedBoard 객체에 추가
+  const boardWithImage = {
+    ...updatedBoard,
+    thumbnail: imageBase64, // Base64 문자열을 thumbnail 필드에 할당
+  };
+
+  // 게시글 데이터(이미지 Base64 문자열 포함)를 서버에 전송하여 기존 게시글을 업데이트
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'PATCH', 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(boardWithImage),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update board');
+  }
+
+  return await response.json();
+};
+
+// board 삭제 API
+export const deleteBoardAPI = async (id) => {
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete board');
+  }
+
+  return await response.json(); 
+};

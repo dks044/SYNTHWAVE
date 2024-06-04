@@ -58,11 +58,56 @@ function* fetchBoardSaga(action) {
   }
 }
 
+function* patchBoardSaga(action) {
+  try {
+    const { id, updatedBoard } = action.payload;
+    const response = yield call(boardAPI.patchBoardAPI, id, updatedBoard);
+
+    yield put({
+      type: "board/patchBoardSuccess",
+      payload: response,
+    });
+    // 게시글 목록 갱신
+    yield put({
+      type: "board/getBoards",
+    });
+  } catch (e) {
+    yield put({
+      type: "board/patchBoardError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
+
+function* deleteBoardSaga(action) {
+  try {
+    const response = yield call(boardAPI.deleteBoardAPI, action.payload);
+
+    yield put({
+      type: "board/deleteBoardSuccess",
+      payload: response,
+    });
+    // 게시글 목록 갱신
+    yield put({
+      type: "board/getBoards",
+    });
+  } catch (e) {
+    yield put({
+      type: "board/deleteBoardError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
+
 
 function* boardSaga() {
   yield takeEvery("board/getBoards", fetchBoardsSaga);
   yield takeEvery("board/getBoard", fetchBoardSaga);
   yield takeEvery("board/postBoard", postBoardSaga);
+  yield takeEvery("board/patchBoard", patchBoardSaga);
+  yield takeEvery("board/deleteBoard", deleteBoardSaga);
 }
 
 export default boardSaga;

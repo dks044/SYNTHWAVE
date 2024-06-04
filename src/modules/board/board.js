@@ -36,18 +36,32 @@ const boardSlice = createSlice({
       board: reducerUtils.error(action.error),
     }),
 
-    postBoard: (state) => ({
+    patchBoard: (state) => ({
       ...state,
       boards: reducerUtils.loading(),
     }),
-    postBoardSuccess: (state, action) => ({
+    patchBoardSuccess: (state, action) => ({
       ...state,
       boards: reducerUtils.success(action.payload),
     }),
-    postBoardError: (state, action) => ({
+    patchBoardError: (state, action) => ({
+      ...state,
+      boards: reducerUtils.error(action.error),
+    }),
+
+    deleteBoard: (state) => ({
+      ...state,
+      boards: reducerUtils.loading(),
+    }),
+    deleteBoardSuccess: (state, action) => ({
+      ...state,
+      boards: reducerUtils.success(action.payload),
+    }),
+    deleteBoardError: (state, action) => ({
       ...state,
       boards: reducerUtils.error(action.error),
     })
+
   }
 })
 
@@ -60,7 +74,13 @@ export const {
   postBoardError,
   getBoard,
   getBoardSuccess,
-  getBoardError
+  getBoardError,
+  patchBoard,
+  patchBoardSuccess,
+  patchBoardError,
+  deleteBoard,
+  deleteBoardSuccess,
+  deleteBoardError
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
