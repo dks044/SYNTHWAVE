@@ -21,13 +21,13 @@ function Boards({boards, viewMode}){
             <Card.Body>
               <Card.Title>{board.title}</Card.Title>
               <Card.Text>
-                {board.content.length > 50 ? board.content.substring(0, 50) + '...' : board.content}
+                {board.content && (board.content.length > 50 ? board.content.substring(0, 50) + '...' : board.content)}
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroup.Item>장르 : {board.category}</ListGroup.Item>
               <ListGroup.Item>글쓴이 : {board.author}</ListGroup.Item>
-              <ListGroup.Item>댓글 수 : {board.comments.length}</ListGroup.Item>
+              <ListGroup.Item>댓글 수 : {board.comments && board.comments.length}</ListGroup.Item>
               <ListGroup.Item>Like : {board.likes}</ListGroup.Item>
               <ListGroup.Item><RatingStars rating={board.rating}/> </ListGroup.Item>
               <ListGroup.Item><SimpleDataText dateString={board.createDate}/> </ListGroup.Item>

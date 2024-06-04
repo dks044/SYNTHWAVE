@@ -3,9 +3,9 @@ import styled from "styled-components";
 import Boards from "../../components/board/Boards";
 import { FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import {getBoards} from "../../modules/board/board";
 import './board.css';
 import { Pagination } from "react-bootstrap";
+import {getBoards} from "../../modules/board/board";
 
 const BoatdBlock = styled.div`
   padding: 1% 50px;
@@ -74,11 +74,12 @@ function BoardContainer() {
   const error = useSelector((state) => state.board.boards?.error);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if(data) return;
-    dispatch(getBoards());
-  }, [data,dispatch]);
 
+
+  useEffect(() => {
+    dispatch(getBoards());
+  }, [dispatch]);  // `dispatch`만 의존성 배열에 포함
+  
 
   // 뷰 모드 상태를 관리하기 위한 useState 훅 사용
   const [viewMode, setViewMode] = useState("card");
@@ -105,6 +106,9 @@ function BoardContainer() {
 
   //검색&필터&정렬 함수
   const filterAndSortData = (boards) => {
+    if (!Array.isArray(boards)) {
+      return [];
+    }
     let filterSortData = boards;
 
     if (keyWord) {
@@ -166,9 +170,12 @@ function BoardContainer() {
     setKeyWordChanged(keyWord.length > 0);
   }, [keyWord]);
 
-  //정렬된 데이터 및 페이징 처리
+  // 정렬된 데이터 및 페이징 처리
   const filteredAndSortedData = data ? filterAndSortData(data) : [];
-  const currentPageData = filteredAndSortedData.slice(pageNum * itemsPerPage, (pageNum + 1) * itemsPerPage);
+  const currentPageData = filteredAndSortedData.length > 0 ? 
+                          filteredAndSortedData.slice(pageNum * itemsPerPage, (pageNum + 1) * itemsPerPage) 
+                          : [];
+
   
   useEffect(() => {
     // 검색, 필터, 정렬, 또는 뷰 모드(viewMode)가 변경된 후의 데이터 길이를 기반으로 총 페이지 수를 다시 계산
@@ -187,6 +194,8 @@ function BoardContainer() {
     setTotalPages(newTotalPages);
   }, [keyWord, filter, sort, data, viewMode]);
 
+  if (loading && !data) return <p>잠시만 기다려주세요...</p>
+  if (error) return <div>{error.message}</div>;
 
   return(
     <BoatdBlock>

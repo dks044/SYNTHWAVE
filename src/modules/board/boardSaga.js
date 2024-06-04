@@ -18,20 +18,24 @@ function* fetchBoardsSaga(action){
   }
 }
 
-function* setBoardsSaga(action) {
+function* postBoardSaga(action) {
   try {
-    const newBoard = action.payload;
-    // 기존 상태를 가져오기 위해 select Effect를 사용
-    const currentBoards = yield select(state => state.board.boards.data);
-    // 새로운 게시글을 기존 게시글 배열에 추가
-    const updatedBoards = [...currentBoards, newBoard];
+    const { newBoard, file } = action.payload;
+
+    // 서버에 새로운 게시글 데이터 전송
+    const response = yield call(boardAPI.addBoardAPI, newBoard, file);
+
     yield put({
-      type: "board/setBoardsSuccess",
-      payload: updatedBoards,
+      type: "board/postBoardSuccess",
+      payload: response,
+    });
+    // 게시글 목록 갱신
+    yield put({
+      type: "board/getBoards",
     });
   } catch (e) {
     yield put({
-      type: "board/setBoardsError",
+      type: "board/postBoardError",
       error: true,
       payload: e.message,
     });
@@ -40,9 +44,10 @@ function* setBoardsSaga(action) {
 
 
 
+
 function* boardSaga() {
   yield takeEvery("board/getBoards", fetchBoardsSaga);
-  yield takeEvery("board/setBoards", setBoardsSaga);
+  yield takeEvery("board/postBoard", postBoardSaga);
 }
 
 export default boardSaga;
