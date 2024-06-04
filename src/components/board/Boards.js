@@ -26,7 +26,7 @@ function Boards({boards, viewMode}){
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroup.Item>장르 : {board.category}</ListGroup.Item>
-              <ListGroup.Item>글쓴이 : {board.author}</ListGroup.Item>
+              <ListGroup.Item>글쓴이 : {board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</ListGroup.Item>
               <ListGroup.Item>댓글 수 : {board.comments && board.comments.length}</ListGroup.Item>
               <ListGroup.Item>Like : {board.likes}</ListGroup.Item>
               <ListGroup.Item><RatingStars rating={board.rating}/> </ListGroup.Item>
@@ -54,7 +54,7 @@ function Boards({boards, viewMode}){
               <td>{board.id}</td>
               <td>{board.category}</td>
               <td>{board.title}</td>
-              <td>{board.author}</td>
+              <td>{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</td>
               <td><SimpleDataText dateString={board.createDate}/></td>
               <td>{board.likes}</td>
             </tr>

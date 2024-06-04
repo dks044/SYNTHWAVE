@@ -936,6 +936,18 @@
       "rating": 0,
       "createDate": "2024-06-04T15:35:11.376Z",
       "thumbnail": ""
+    },
+    {
+      "id": 53,
+      "title": "테스트!!!",
+      "author": "9d2f54c9-38f6-4a5b-9048-5e983b62afa2",
+      "category": "hiphop",
+      "content": "ㅇㅇㅇㅇ",
+      "comments": [],
+      "likes": 0,
+      "rating": 0,
+      "createDate": "2024-06-04T16:00:21.425Z",
+      "thumbnail": ""
     }
   ]
 }
