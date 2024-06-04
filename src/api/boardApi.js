@@ -36,3 +36,13 @@ export const addBoardAPI = async (newBoard, file) => {
 
   return await response.json();
 };
+
+export async function getBoardByIdAPI(id) {
+  try {
+    const response = await axios.get(`http://localhost:4000/boards/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching data for id ${id}:`, error);
+    throw error;
+  }
+}
