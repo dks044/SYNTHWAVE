@@ -86,7 +86,7 @@ function Navigate(){
         <NavManu isToggleOpen={isToggleOpen}>
             <li>
               <Link to={"/boards"} className="nav-menu-list">
-                리뷰
+                리뷰게시판
               </Link>
             </li>
             <li>

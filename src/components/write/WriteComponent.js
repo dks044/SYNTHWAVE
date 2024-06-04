@@ -50,7 +50,6 @@ function WriteComponent() {
       content,
       comments: [],
       likes: 0,
-      rating: 0.0,
       createDate: currentTime
     };
   

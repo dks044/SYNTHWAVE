@@ -60,8 +60,8 @@ function* fetchBoardSaga(action) {
 
 function* patchBoardSaga(action) {
   try {
-    const { id, updatedBoard } = action.payload;
-    const response = yield call(boardAPI.patchBoardAPI, id, updatedBoard);
+    const { id, updatedBoard, file } = action.payload; //file 도 분해해서 가져옴
+    const response = yield call(boardAPI.patchBoardAPI, id, updatedBoard, file); // 여기에 file을 전달
 
     yield put({
       type: "board/patchBoardSuccess",
@@ -71,6 +71,7 @@ function* patchBoardSaga(action) {
     yield put({
       type: "board/getBoards",
     });
+
   } catch (e) {
     yield put({
       type: "board/patchBoardError",

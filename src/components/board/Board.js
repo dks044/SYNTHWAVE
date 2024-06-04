@@ -5,6 +5,7 @@ import SimpleDataText from "../../lib/SimpleDataText"
 import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ const PatchDeleteBlock = styled.div`
 
 
 function Board({board}){
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user?.data);
   const [displayPatchDelete,setDisplayPatchDelete] = useState(false);
 
@@ -80,7 +82,7 @@ function Board({board}){
       <h4><RatingStars  rating={parseFloat(calculateAverageRating(board.ratingUser))} /></h4>
       <h1>{board.title} <Badge className="customBadge" bg="info">{category}</Badge>
       <PatchDeleteBlock displayPatchDelete={displayPatchDelete}>
-          <Button variant="success" size="sm" >
+          <Button onClick={() => navigate(`/boards/${board.id}/patch`)} variant="success" size="sm" >
             수정하기
           </Button>
           <Button className="deleteBlock" variant="danger" size="sm" >

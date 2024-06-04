@@ -17,7 +17,7 @@ const Title = styled.h1`
 function WriteContainer() {
   return (
     <WriteBlock>
-      <Title>글쓰기 페이지</Title>
+      <Title><strong>글쓰기 페이지</strong></Title>
       <WriteComponent />
     </WriteBlock>
   );

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid'; 
 import {setUser} from "./modules/user/user"
 import BoardPage from './pages/board/BoardPage';
+import PatchPage from './pages/write/PatchPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,9 @@ function App() {
           {/* Board */}
           <Route path='/boards' element={<BoardsPage />} />
           <Route path='/boards/:boardId' element={<BoardPage />} />
-          {/* Write(작성,수정) */}
+          {/* 수정 */}
+          <Route path='/boards/:boardId/patch' element={<PatchPage />} />
+          {/* Write */}
           <Route path='/write' element={<WritePage />} />
         </Route>
       </Routes>
