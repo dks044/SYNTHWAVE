@@ -6,8 +6,8 @@ import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {decreaseBoardLikes, deleteBoard, increaseBoardLikes} from "../../modules/board/board";
-import { deleteUserLikes, postUserLikes } from "../../modules/user/user";
+import {decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardRatingUser} from "../../modules/board/board";
+import { deleteUserLikes, postRatingBoards, postUserLikes } from "../../modules/user/user";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -40,28 +40,52 @@ const PatchDeleteBlock = styled.div`
   display: ${(props) => (props.displayPatchDelete ? "block" : "none")};
 `
 
+const RatingErrorText = styled.h4`
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bolder;
+`
 
 function Board({ board }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user?.data);
-
-  const userLikes = useSelector((state) => state.user.likeBoards?.data);
+  const ratingBoards = useSelector((state) => state.user.ratingBoards?.data || []);
+  const userLikes = useSelector((state) => state.user.likeBoards?.data || []);
   const [likes,setLikes] = useState(0);
+
   useEffect(()=>{
-    setLikes(board.likes);
-  },[board.likes])
+    if(board && board.likes !== undefined) {
+      setLikes(board.likes);
+    }
+  },[board])
 
   const [displayPatchDelete, setDisplayPatchDelete] = useState(false);
   //modal
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setModalTitle('');
+    setModalBody('');
+    setModalButton('');
+  }
+
+  const handleShow = () => {
+    setModalTitle('삭제');
+    setModalBody('해당 게시글을 삭제하시겠습니까?');
+    setModalButton('삭제');
+    setShow(true);
+  }
+    
+    
+  const [modalTitle,setModalTitle] = useState('');
+  const [modalBody,setModalBody] = useState('');
+  const [modalButton,setModalButton] = useState('');
 
 
   //현재 게시글의 작성자와 사용자가 맞는지 확인
   useEffect(() => {
-    let author = null; // `const` 대신 `let` 사용
+    let author = null; 
     if (board) {
       author = board.author;
     }
@@ -105,7 +129,24 @@ function Board({ board }) {
       setLikes((prevLikes) => prevLikes - 1); 
     }
   }
-  
+  //레이팅
+  const [rating, setRating] = useState(0);
+  const onChangeRating = (e) => {
+    setRating(Number(e.target.value));
+  };
+
+  //레이팅 함수
+  const [ratingText,setRatingText] = useState('');
+  const onClickToRating = async () => {
+    //레이팅(별점) 준적이 없을경우
+    if(!ratingBoards.includes(board.id)){
+      await dispatch(postRatingBoards(board.id)); //레이팅(평가) 한 게시물id로 등록
+      await dispatch(patchBoardRatingUser({ boardId: board.id, userId: user.id, rating: rating }));
+    }else{
+      setRatingText('이미 별점을 주신 게시글입니다.');
+      return;
+    }
+  }
 
   useEffect(() => {
     if (board) {
@@ -147,17 +188,17 @@ function Board({ board }) {
           <strong>😀{likes}😀<br />👍좋아요👍</strong>
         </Button>
         <LikeAndFeedBackBarRating>
-          <Form.Select size="sm">
+          <Form.Select size="sm" onChange={onChangeRating}>
             <option value={5}>⭐⭐⭐⭐⭐</option>
             <option value={4}>⭐⭐⭐⭐</option>
             <option value={3}>⭐⭐⭐</option>
             <option value={2}>⭐⭐</option>
             <option value={1}>⭐</option>
           </Form.Select>
-          <Button variant="warning">별점주기</Button>
+          <Button variant="warning" onClick={onClickToRating}>별점주기</Button>
         </LikeAndFeedBackBarRating >
-
       </LikeAndFeedBackBar>
+      <RatingErrorText>{ratingText}</RatingErrorText>
       <br /><br />
       <h4><strong>전체 댓글 {board.comments ? board.comments.length : 0} 개</strong></h4>
       <InputGroup className="mb-3">
@@ -192,16 +233,16 @@ function Board({ board }) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>게시글삭제</Modal.Title>
+          <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          해당 게시글을 삭제하시겠습니까?
+          {modalBody}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             취소
           </Button>
-          <Button variant="danger" onClick={onClickToDelete}>삭제</Button>
+          <Button variant="danger" onClick={onClickToDelete}>{modalButton}</Button>
         </Modal.Footer>
       </Modal>
     </BoardComponentBlock>

@@ -142,6 +142,26 @@ function* decreaseBoardLikesSaga(action){
   }
 }
 
+//레이팅 업데이트
+function* patchBoardRatingUserSaga(action){
+  try {
+    const response = yield call(boardAPI.ratingBoardAPI,action.payload);
+    yield put ({
+      type: "board/patchBoardRatingUserSuccess",
+      payload : response
+    });
+    // 게시글 목록 갱신
+    yield put({
+      type: "board/getBoards",
+    });
+  } catch (e) {
+    yield put({
+      type: "board/patchBoardRatingUserError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
 
 
 function* boardSaga() {
@@ -152,6 +172,7 @@ function* boardSaga() {
   yield takeEvery("board/deleteBoard", deleteBoardSaga);
   yield takeEvery("board/increaseBoardLikes", increaseBoardLikesSaga);
   yield takeEvery("board/decreaseBoardLikes", decreaseBoardLikesSaga);
+  yield takeEvery("board/patchBoardRatingUser", patchBoardRatingUserSaga);
 }
 
 export default boardSaga;

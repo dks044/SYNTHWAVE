@@ -143,3 +143,36 @@ export const DecreaseLikesBoardAPI = async(id) => {
 
   return await response.json();
 };
+
+// board rating 피드백
+export const ratingBoardAPI = async(id, userId, rating) => {
+  const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
+
+  if (!boardResponse.ok) {
+    throw new Error('Failed to fetch board');
+  }
+
+  const board = await boardResponse.json();
+  const boardRatingUser = board.ratingUser || [];
+
+  const userRating = {
+    userId: userId,
+    rating: rating
+  };
+
+  const newBoardRatingUser = [...boardRatingUser, userRating];
+
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ratingUser: newBoardRatingUser }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update board');
+  }
+
+  return await response.json();
+};
