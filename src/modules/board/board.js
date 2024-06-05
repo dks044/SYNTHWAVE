@@ -138,7 +138,19 @@ const boardSlice = createSlice({
       ...state,
       boards: reducerUtils.error(action.error),
     }),
-
+    //댓글삭제
+    patchBoardCommentDelete: (state) => ({
+      ...state,
+      boards: reducerUtils.loading(),
+    }),
+    patchBoardCommentDeleteSuccess: (state, action) => ({
+      ...state,
+      boards: reducerUtils.success(action.payload),
+    }),
+    patchBoardCommentDeleteError: (state, action) => ({
+      ...state,
+      boards: reducerUtils.error(action.error),
+    }),
 
   }
 })
@@ -173,7 +185,10 @@ export const {
   patchBoardCommentsError,
   patchBoardCommentPatch,
   patchBoardCommentPatchSuccess,
-  patchBoardCommentPatchError
+  patchBoardCommentPatchError,
+  patchBoardCommentDelete,
+  patchBoardCommentDeleteSuccess,
+  patchBoardCommentDeleteError
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

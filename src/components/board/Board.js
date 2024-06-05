@@ -6,9 +6,9 @@ import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardCommentPatch, patchBoardComments, patchBoardRatingUser } from "../../modules/board/board";
+import { decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardCommentDelete, patchBoardCommentPatch, patchBoardComments, patchBoardRatingUser } from "../../modules/board/board";
 import { deleteUserLikes, postRatingBoards, postUserLikes } from "../../modules/user/user";
-import { FaPen } from "react-icons/fa";
+import { FaPen,FaTrashAlt } from "react-icons/fa";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -120,7 +120,7 @@ function Board({ board }) {
   const [category, setCategory] = useState();
   const target = useRef(null);
 
-  //삭제함수
+  //게시글 삭제함수
   const onClickToDelete = () => {
     dispatch(deleteBoard(board.id));
     navigate('/boards')
@@ -230,6 +230,32 @@ function Board({ board }) {
     setCommentText(null);
   };
 
+  //댓글삭제로직 (modal포함)
+  const [show2, setShow2] = useState(false);
+  const [deleteCommentId,setDeleteCommentId] = useState('');
+
+  const handleClose2 = () => {
+    setShow2(false);
+    setDeleteCommentId('');
+  }
+  const handleShow2 = (commentId) => {
+    setDeleteCommentId(commentId); 
+    setShow2(true);
+  };
+
+  const onClickToCommentDelete = async () => {
+    await dispatch(patchBoardCommentDelete({
+      boardId: board.id,
+      commentId: deleteCommentId
+    }));
+    
+    // 화면(페이지)에도 반영
+    const updateBoardComments = comments.filter(comment => comment.id !== deleteCommentId);
+    setComments(updateBoardComments);
+    
+    handleClose2();
+  };
+
   if (board) return (
     <BoardComponentBlock>
       <h4><RatingStars rating={parseFloat(calculateAverageRating(ratingUser))} /></h4>
@@ -301,7 +327,10 @@ function Board({ board }) {
               </strong>
               {comment.author === user.id && (
                 <CommentPatchDeleteBlock>
+                  {/* 댓글수정 */}
                   <FaPen className="commentsPatchDelect" size={20} onClick={() => onClickToCommentPatch(comment.id, comment.text)} />
+                  {/* 댓글삭제 */}
+                  <FaTrashAlt className="commentsPatchDelect" size={20} onClick={()=> handleShow2(comment.id)}/>
                 </CommentPatchDeleteBlock>
               )}
             </h3>
@@ -326,6 +355,7 @@ function Board({ board }) {
           </div>
         ))}
       </CommentsBlock>
+      {/* 게시글삭제 modal */}
       <Modal
         show={show}
         onHide={handleClose}
@@ -343,6 +373,26 @@ function Board({ board }) {
             취소
           </Button>
           <Button variant="danger" onClick={onClickToDelete}>{modalButton}</Button>
+        </Modal.Footer>
+      </Modal>
+      {/* 댓글삭제 modal */}
+      <Modal
+        show={show2}
+        onHide={handleClose2}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>댓글삭제</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          해당 댓글을 삭제하시겠습니까?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose2}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={onClickToCommentDelete}>댓글삭제</Button>
         </Modal.Footer>
       </Modal>
     </BoardComponentBlock>
