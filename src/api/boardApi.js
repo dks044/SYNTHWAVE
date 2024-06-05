@@ -91,3 +91,55 @@ export const deleteBoardAPI = async (id) => {
 
   return await response.json(); 
 };
+
+// board 좋아요 증감
+export const IncreaseLikesBoardAPI = async(id) => {
+  const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
+
+  if (!boardResponse.ok) {
+    throw new Error('Failed to fetch board');
+  }
+
+  const board = await boardResponse.json();
+  let boardLikes = board.likes + 1;
+
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ likes: boardLikes }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update board');
+  }
+
+  return await response.json();
+};
+
+// board 좋아요 감소
+export const DecreaseLikesBoardAPI = async(id) => {
+  const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
+
+  if (!boardResponse.ok) {
+    throw new Error('Failed to fetch board');
+  }
+
+  const board = await boardResponse.json();
+  let boardLikes = board.likes - 1;
+
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ likes: boardLikes }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update board');
+  }
+
+  return await response.json();
+};
