@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import LogoText from "../components/etc/LogoText";
 import LogoComponent from "../components/etc/LogoComponent";
 import { FaGithub } from "react-icons/fa";
-import '../index.css';
 
 const fadeIn = keyframes`
   from {
