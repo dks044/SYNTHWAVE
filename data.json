@@ -25,23 +25,26 @@
         {
           "text": "반갑스니다",
           "author": "09c0c64e-5c80-4321-81a9-faad51689c7e"
+        },
+        {
+          "text": "안녕하세요",
+          "author": "09c0c64e-5c80-4321-81a9-faad51689c7e"
+        },
+        {
+          "text": "얌마",
+          "author": "09c0c64e-5c80-4321-81a9-faad51689c7e"
         }
       ],
       "likes": 153,
       "likeUsers": [],
       "ratingUser": [
         {
-          "id": 1,
-          "text": "정말 중독성 강한 곡이에요!",
-          "author": "testData"
+          "userId": "09c0c64e-5c80-4321-81a9-faad51689c7e",
+          "rating": 5
         },
         {
-          "id": 2,
-          "text": "매일 아침 이 노래로 기분 전환합니다~",
-          "author": "testData"
-        },
-        {
-          "author": "09c0c64e-5c80-4321-81a9-faad51689c7e"
+          "userId": "09c0c64e-5c80-4321-81a9-faad51689c7e",
+          "rating": 1
         }
       ],
       "createDate": "2024-05-30T15:30:00+09:00"
@@ -546,6 +549,10 @@
         {
           "userId": "user4",
           "rating": 5
+        },
+        {
+          "userId": "09c0c64e-5c80-4321-81a9-faad51689c7e",
+          "rating": 2
         }
       ],
       "createDate": "2024-04-21T07:35:00+09:00"
@@ -1437,23 +1444,6 @@
         }
       ],
       "createDate": "2024-04-21T07:35:00+09:00"
-    },
-    {
-      "id": "927a0ac6-8755-46f3-9414-0640695dda8b",
-      "title": "안녕하세요",
-      "author": "09c0c64e-5c80-4321-81a9-faad51689c7e",
-      "category": "hiphop",
-      "content": "3434",
-      "comments": [],
-      "likes": 0,
-      "likeUsers": [],
-      "ratingUser": [
-        {
-          "author": "09c0c64e-5c80-4321-81a9-faad51689c7e"
-        }
-      ],
-      "createDate": "2024-06-05T10:59:01.811Z",
-      "thumbnail": ""
     }
   ]
 }

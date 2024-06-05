@@ -112,6 +112,20 @@ const boardSlice = createSlice({
       ...state,
       boards: reducerUtils.error(action.error),
     }),
+
+    patchBoardRatingUser: (state) => ({
+      ...state,
+      boards: reducerUtils.loading(),
+    }),
+    patchBoardRatingUserSuccess: (state, action) => ({
+      ...state,
+      boards: reducerUtils.success(action.payload),
+    }),
+    patchBoardRatingUserError: (state, action) => ({
+      ...state,
+      boards: reducerUtils.error(action.error),
+    }),
+
   }
 })
 

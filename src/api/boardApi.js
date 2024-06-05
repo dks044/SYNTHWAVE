@@ -1,5 +1,6 @@
 import axios from "axios";
 import { convertToBase64 } from "../lib/converToBase64";
+import { v4 as uuidv4 } from 'uuid';
 
 export async function getBoardsAPI() {
   try {
@@ -192,6 +193,7 @@ export const commentBoardAPI = async (id, text, author) => {
   const boardComments = board.comments || [];
 
   const comment = {
+    id: uuidv4(),
     text: text,
     author: author
   };

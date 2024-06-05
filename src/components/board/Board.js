@@ -6,8 +6,9 @@ import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardComments, patchBoardRatingUser} from "../../modules/board/board";
+import { decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardComments, patchBoardRatingUser } from "../../modules/board/board";
 import { deleteUserLikes, postRatingBoards, postUserLikes } from "../../modules/user/user";
+import { FaPen } from "react-icons/fa";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -45,6 +46,9 @@ const RatingErrorText = styled.h4`
   text-align: center;
   font-weight: bolder;
 `
+const CommentPatchDeleteBlock = styled.span`
+  margin-left: 5px;
+`
 
 function Board({ board }) {
   const dispatch = useDispatch();
@@ -52,17 +56,21 @@ function Board({ board }) {
   const user = useSelector((state) => state.user.user?.data);
   const ratingBoards = useSelector((state) => state.user.ratingBoards?.data || []);
   const userLikes = useSelector((state) => state.user.likeBoards?.data || []);
-  const [likes,setLikes] = useState(0);
-  const [ratingUser,setRatingUser] = useState([]);
+  const [likes, setLikes] = useState(0);
+  const [ratingUser, setRatingUser] = useState([]);
+  const [comments, setComments] = useState([]);
 
-  useEffect(()=>{
-    if(board && board.likes !== undefined) {
+  useEffect(() => {
+    if (board && board.likes !== undefined) {
       setLikes(board.likes);
     }
-    if(board && board.ratingUser !== undefined) {
+    if (board && board.ratingUser !== undefined) {
       setRatingUser(board.ratingUser);
     }
-  },[board])
+    if (board && board.comments !== undefined) {
+      setComments(board.comments);
+    }
+  }, [board])
 
   const [displayPatchDelete, setDisplayPatchDelete] = useState(false);
   //modal
@@ -80,16 +88,16 @@ function Board({ board }) {
     setModalButton('삭제');
     setShow(true);
   }
-    
-    
-  const [modalTitle,setModalTitle] = useState('');
-  const [modalBody,setModalBody] = useState('');
-  const [modalButton,setModalButton] = useState('');
+
+
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalBody, setModalBody] = useState('');
+  const [modalButton, setModalButton] = useState('');
 
 
   //현재 게시글의 작성자와 사용자가 맞는지 확인
   useEffect(() => {
-    let author = null; 
+    let author = null;
     if (board) {
       author = board.author;
     }
@@ -117,20 +125,20 @@ function Board({ board }) {
     dispatch(deleteBoard(board.id));
     navigate('/boards')
   }
-  
+
   //좋아요 함수
   const onClickToLike = async () => {
     //좋아요 누른적이 없을 경우
     if (!userLikes.includes(board.id)) {
       await dispatch(postUserLikes(board.id));
       await dispatch(increaseBoardLikes(board.id));
-      setLikes((prevLikes) => prevLikes + 1); 
+      setLikes((prevLikes) => prevLikes + 1);
     }
     //좋아요 누른적이 있을 경우
     else {
       await dispatch(deleteUserLikes(board.id)); //해당 좋아요한 게시글의 id 삭제
       await dispatch(decreaseBoardLikes(board.id));
-      setLikes((prevLikes) => prevLikes - 1); 
+      setLikes((prevLikes) => prevLikes - 1);
     }
   }
   //레이팅
@@ -140,7 +148,7 @@ function Board({ board }) {
   };
 
   //레이팅 로직
-  const [ratingText,setRatingText] = useState('');
+  const [ratingText, setRatingText] = useState('');
   const onClickToRating = async () => {
     const userRating = {
       userId: user.id,
@@ -148,17 +156,17 @@ function Board({ board }) {
     };
 
     // 별점 유효성 검사
-    if(rating < 1 || rating > 5) {
+    if (rating < 1 || rating > 5) {
       alert('별점은 1에서 5 사이로 주세요.');
       return;
     }
     //레이팅(별점) 준적이 없을경우
-    if(!ratingBoards.includes(board.id)){
+    if (!ratingBoards.includes(board.id)) {
       await dispatch(postRatingBoards(board.id)); //레이팅(평가) 한 게시물id로 등록
       await dispatch(patchBoardRatingUser({ boardId: board.id, userId: user.id, rating: rating }));
       setRatingUser([...ratingUser, userRating]);
       console.log(ratingUser);
-    }else{
+    } else {
       setRatingText('이미 별점을 주신 게시글입니다.');
       return;
     }
@@ -173,12 +181,22 @@ function Board({ board }) {
   }, []);
 
   //댓글로직
-  const [comment,setComment] = useState('');
+  const commentRef = useRef('');
+  const [comment, setComment] = useState('');
   const onChangeComment = (e) => {
     setComment(e.target.value);
   };
   const onClickToComment = async () => {
+    const userComment = {
+      author: user.id,
+      text: comment
+    };
     await dispatch(patchBoardComments({ boardId: board.id, text: comment, author: user.id }));
+    setComment('');
+    if (commentRef.current) {
+      commentRef.current.value = ''; 
+    }
+    setComments([...comments, userComment])
   }
 
 
@@ -227,7 +245,7 @@ function Board({ board }) {
       </LikeAndFeedBackBar>
       <RatingErrorText>{ratingText}</RatingErrorText>
       <br /><br />
-      <h4><strong>전체 댓글 {board.comments ? board.comments.length : 0} 개</strong></h4>
+      <h4><strong>전체 댓글 {comments ? comments.length : 0} 개</strong></h4>
       <InputGroup className="mb-3">
         <Form.Control
           as="textarea"
@@ -236,6 +254,8 @@ function Board({ board }) {
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           onChange={onChangeComment}
+          value={comment}
+          ref={commentRef}
         />
         <Button variant="primary" id="button-addon2" onClick={onClickToComment}>
           댓글달기
@@ -243,12 +263,17 @@ function Board({ board }) {
       </InputGroup>
       <br />
       <CommentsBlock>
-        {board.comments && board.comments.map((comment) => (
+        {comments && comments.map((comment) => (
           <div className="comments" key={comment.id}>
             <h3>
               <strong>
                 🎸{comment.author && (comment.author.length > 8 ? comment.author.substring(0, 8) + '...' : comment.author)}
               </strong>
+              {comment.author === user.id && (
+                <CommentPatchDeleteBlock>
+                  <FaPen size={20} />
+                </CommentPatchDeleteBlock>
+              )}
             </h3>
             {comment.text}
           </div>
