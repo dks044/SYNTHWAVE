@@ -12,9 +12,9 @@ const BoardsBlock = styled.div`
   padding: 2% 5%;
 `
 
-function Boards({boards, viewMode}){
+function Boards({ boards, viewMode }) {
   const navigate = useNavigate();
-  
+
   const calculateAverageRating = (ratingUsers) => {
     // ratingUsers가 배열인지 확인하고, 배열이 아니면 0을 반환
     if (!Array.isArray(ratingUsers) || !ratingUsers.length) {
@@ -24,10 +24,10 @@ function Boards({boards, viewMode}){
     return (totalRating / ratingUsers.length).toFixed(1);
   };
 
-  return(
+  return (
     <BoardsBlock>
-      {viewMode === 'card' && 
-        boards && boards.map((board)=>(
+      {viewMode === 'card' &&
+        boards && boards.map((board) => (
           <Card style={{ width: '14rem' }} key={board.id}>
             {board.thumbnail && (
               <Card.Img className="navigate" onClick={() => navigate(`/boards/${board.id}`)} variant="top" src={board.thumbnail} />
@@ -46,39 +46,38 @@ function Boards({boards, viewMode}){
               <ListGroup.Item>글쓴이 : {board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</ListGroup.Item>
               <ListGroup.Item>댓글 수 : {board.comments && board.comments.length}</ListGroup.Item>
               <ListGroup.Item>Like : {board.likes}</ListGroup.Item>
-              <ListGroup.Item><RatingStars rating={parseFloat(calculateAverageRating(board.ratingUser))}/> </ListGroup.Item>
-              <ListGroup.Item><SimpleDataText dateString={board.createDate}/> </ListGroup.Item>
+              <ListGroup.Item><RatingStars rating={parseFloat(calculateAverageRating(board.ratingUser))} /> </ListGroup.Item>
+              <ListGroup.Item><SimpleDataText dateString={board.createDate} /> </ListGroup.Item>
             </ListGroup>
           </Card>
         ))
       }
-
-    {viewMode === 'list' &&
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>카테고리</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
-            <th>추천수</th>
-          </tr>
-        </thead>
-        <tbody>
-          {boards && boards.map((board) => (
-            <tr key={board.id}>
-              <td>{board.id}</td>
-              <td>{board.category}</td>
-              <td className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}</td>
-              <td>{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</td>
-              <td><SimpleDataText dateString={board.createDate}/></td>
-              <td>{board.likes}</td>
+      {viewMode === 'list' &&
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>카테고리</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>작성일</th>
+              <th>추천수</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    }
+          </thead>
+          <tbody>
+            {boards && boards.map((board, index) => ( // index를 사용하여 순번을 생성
+              <tr key={board.id}>
+                <td>{index + 1}</td>
+                <td>{board.category}</td>
+                <td className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}</td>
+                <td>{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</td>
+                <td><SimpleDataText dateString={board.createDate} /></td>
+                <td>{board.likes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      }
     </BoardsBlock>
   )
 }

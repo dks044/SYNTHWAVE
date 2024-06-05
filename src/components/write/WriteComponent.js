@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { postBoard } from "../../modules/board/board";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+
 const WriteComponentBlock = styled.div`
   width: 50%;
 `
@@ -26,7 +28,6 @@ function WriteComponent() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user?.data);
   const boards = useSelector((state) => state.board.boards?.data);
-  let boardsLastIndex = parseInt(boards && boards.length > 0 ? boards[boards.length - 1].id : 0) + 1;
   const [errorText, setErrorText] = useState('');
 
   //파일첨부 유효성검사
@@ -80,7 +81,7 @@ function WriteComponent() {
 
     // 폼 데이터
     const newBoard = {
-      id: boardsLastIndex.toString(),
+      id: uuidv4(),
       title,
       author: user.id,
       category,
