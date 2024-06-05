@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Card, CloseButton, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -61,6 +61,17 @@ function PatchComponent({ board }) {
   };
 
 
+
+  // useEffect 훅을 사용하여 컴포넌트가 마운트될 때 기존 게시글의 데이터를 로드
+  useEffect(() => {
+    if (board) {
+      setTitle(board.title);
+      setCategory(board.category);
+      setContent(board.content);
+      setPreviewUrl(board.thumbnail);
+    }
+  }, [board]); // board가 변경될 때마다 이 effect를 다시 실행
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -118,10 +129,24 @@ function PatchComponent({ board }) {
     }
   }
 
+  // 입력 폼의 상태를 관리하기 위한 useState 훅
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [content, setContent] = useState('');
+  // useEffect 훅을 사용하여 컴포넌트가 마운트될 때 기존 게시글의 데이터를 로드
+  useEffect(() => {
+    if (board) {
+      setTitle(board.title);
+      setCategory(board.category);
+      setContent(board.content);
+      setPreviewUrl(board.thumbnail);
+    }
+  }, [board]); // board가 변경될 때마다 이 effect를 다시 실행
+
   if (board) return (
     <PatchComponentBlock>
       <Row className="justify-content-md-center">
-        <Col xs={12} md={8}> {/* 중앙 정렬을 위해 적절한 크기 지정 */}
+        <Col xs={12} md={8}>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>제목 입력</Form.Label>
@@ -135,12 +160,19 @@ function PatchComponent({ board }) {
                   placeholder="제목을 입력하세요"
                   name="title"
                   maxLength="30"
+                  value={title} // 여기에 상태 할당
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </FloatingLabel>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>카테고리 입력</Form.Label>
-              <Form.Select aria-label="Default select example" name="category">
+              <Form.Select
+                aria-label="Default select example"
+                name="category"
+                value={category} // 여기에 상태 할당
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 <option>카테고리</option>
                 <option value="hiphop">힙합</option>
                 <option value="pop">팝</option>
@@ -148,9 +180,8 @@ function PatchComponent({ board }) {
               </Form.Select>
             </Form.Group>
             <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>썸네일</Form.Label><CloseButton onClick={onClickToFileInputInital}/>
-              <Form.Control type="file" name="thumbnail" onChange={handleFileChange} ref={fileInputRef}/>
-              {/*이미지 미리보기*/}
+              <Form.Label>썸네일</Form.Label><CloseButton onClick={onClickToFileInputInital} />
+              <Form.Control type="file" name="thumbnail" onChange={handleFileChange} ref={fileInputRef} />
               {previewUrl &&
                 <CardWrapper>
                   <Card style={{ width: '18rem' }}>
@@ -161,7 +192,13 @@ function PatchComponent({ board }) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Label>내용 입력</Form.Label>
-              <Form.Control as="textarea" rows={3} name="content" />
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="content"
+                value={content} // 여기에 상태 할당
+                onChange={(e) => setContent(e.target.value)}
+              />
             </Form.Group>
             <Container className="d-flex justify-content-center mt-3">
               <Button variant="outline-primary" type="submit" size="lg">작성하기</Button>
