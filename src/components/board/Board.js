@@ -48,6 +48,9 @@ function Board({ board }) {
 
   const userLikes = useSelector((state) => state.user.likeBoards?.data);
   const [likes,setLikes] = useState(0);
+  useEffect(()=>{
+    setLikes(board.likes);
+  },[board.likes])
 
   const [displayPatchDelete, setDisplayPatchDelete] = useState(false);
   //modal
