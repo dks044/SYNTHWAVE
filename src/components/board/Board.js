@@ -7,6 +7,7 @@ import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {deleteBoard} from "../../modules/board/board";
+import { deleteUserLikes, postUserLikes } from "../../modules/user/user";
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ function Board({ board }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user?.data);
+  const userLikes = useSelector((state) => state.user.likeBoards?.data);
   const [displayPatchDelete, setDisplayPatchDelete] = useState(false);
   //modal
   const [show, setShow] = useState(false);
@@ -81,6 +83,20 @@ function Board({ board }) {
     dispatch(deleteBoard(board.id));
     navigate('/boards')
   }
+  
+  //좋아요 함수
+  const onClickToLike = async () => {
+    //좋아요 누른적이 없을 경우
+    if(!userLikes.includes(board.id)){ // 'includes'로 변경
+      await dispatch(postUserLikes(board.id));
+      console.log(userLikes);
+    }
+    //좋아요 누른적이 있을 경우
+    else { // 'if'를 'else'로 변경하여 중복 실행 방지
+      await dispatch(deleteUserLikes(board.id)); //해당 좋아요한 게시글의 id 삭제
+      console.log(userLikes);
+    }
+  }
 
   useEffect(() => {
     if (board) {
@@ -113,7 +129,7 @@ function Board({ board }) {
       </StyledTextArea>
       <br /><br /><br /><br />
       <LikeAndFeedBackBar>
-        <Button ref={target} variant="light" >
+        <Button ref={target} variant="light" onClick={onClickToLike}>
           <strong>😀{board.likes}😀<br />👍좋아요👍</strong>
         </Button>
         <LikeAndFeedBackBarRating>

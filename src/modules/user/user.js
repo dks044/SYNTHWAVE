@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { reducerUtils } from "../../lib/asyncUtils";
 
 const initialState = {
-  user : reducerUtils.initial(),
+  user: reducerUtils.initial(),
+  likeBoards: reducerUtils.initial(),
 };
 
 const userSlice = createSlice({ 
@@ -32,7 +33,45 @@ const userSlice = createSlice({
     setUserError: (state, action) => ({
       ...state,
       user: reducerUtils.error(action.error),
-    })
+    }),
+
+    getUserLikes: (state) => ({
+      ...state,
+      likeBoards: reducerUtils.loading(),
+    }),
+    getUserLikesSuccess: (state, action) => ({
+      ...state,
+      likeBoards: reducerUtils.success(action.payload),
+    }),
+    getUserLikesError: (state, action) => ({
+      ...state,
+      likeBoards: reducerUtils.error(action.error),
+    }),
+    postUserLikes: (state) => ({
+      ...state,
+      likeBoards: reducerUtils.loading(),
+    }),
+    postUserLikesSuccess: (state, action) => ({
+      ...state,
+      likeBoards: reducerUtils.success(action.payload),
+    }),
+    postUserLikesError: (state, action) => ({
+      ...state,
+      likeBoards: reducerUtils.error(action.error),
+    }),
+    deleteUserLikes: (state) => ({
+      ...state,
+      likeBoards: reducerUtils.loading(),
+    }),
+    deleteUserLikesSuccess: (state, action) => ({
+      ...state,
+      likeBoards: reducerUtils.success(action.payload),
+    }),
+    deleteUserLikesError: (state, action) => ({
+      ...state,
+      likeBoards: reducerUtils.error(action.error),
+    }),
+    
   }
 })
 
@@ -42,7 +81,16 @@ export const {
   getUserError,
   setUser,
   setUserSuccess,
-  setUserError
+  setUserError,
+  postUserLikes,
+  postUserLikesSuccess,
+  postUserLikesError,
+  getUserLikes,
+  getUserLikesSuccess,
+  getUserLikesError,
+  deleteUserLikes,
+  deleteUserLikesSuccess,
+  deleteUserLikesError
 } = userSlice.actions;
 
 export default userSlice.reducer;

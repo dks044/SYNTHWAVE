@@ -1,4 +1,4 @@
-import { call, put, take, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, select, take, takeEvery, takeLatest } from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid'; 
 
 
@@ -37,9 +37,69 @@ function* setUserId({payload}){
   }
 }
 
+function* postUserLike({payload}) {
+  try {
+    const likeBoards = yield select(state => state.user.likeBoards.data || []);
+    const updatedLikeBoards = [...likeBoards, payload]; 
+
+    yield put({
+      type: "user/postUserLikesSuccess",
+      payload: updatedLikeBoards,
+    });
+  } catch (e) {
+    yield put({
+      type: "user/postUserLikesError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
+
+//userLikes정보 얻기
+function* fetchUserLike(action){
+  try {
+    const likeBoards = yield call(action.payload);
+    yield put ({
+      type: "user/getUserLikesSuccess",
+      payload : likeBoards
+    });
+    
+  } catch (e) {
+    yield put({
+      type: "user/getUserLikesError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
+
+function* deleteUserLike({payload}){
+  try {
+    const likeBoards = yield select(state => state.user.likeBoards.data || []);
+    const updatedLikeBoards = likeBoards.filter(id => id !== payload);
+
+    yield put({
+      type: "user/deleteUserLikesSuccess",
+      payload: updatedLikeBoards,
+    });
+
+  } catch (e) {
+    yield put({
+      type: "user/deleteUserLikesError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
+
+
 function* userSaga(){
   yield takeEvery("user/getUser", fetchUserSaga);
-  yield takeEvery("user/setUser", setUserId); 
+  yield takeEvery("user/setUser", setUserId);
+  yield takeEvery("user/postUserLikes", postUserLike);
+  yield takeEvery("user/getUserLikes", fetchUserLike);
+  yield takeEvery("user/deleteUserLikes", deleteUserLike);
+
 }
 
 export default userSaga;
