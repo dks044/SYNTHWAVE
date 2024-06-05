@@ -94,11 +94,6 @@ function Navigate(){
                 글쓰기
               </Link>
             </li>
-            <li>
-              <Link to={"/mypage"} className="nav-menu-list">
-                마이페이지
-              </Link>
-            </li>
         </NavManu >
         <FaBars className="menuToggleBtn" onClick={handleToggleOpen} />
       </NavigateBlock>
