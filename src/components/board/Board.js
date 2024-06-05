@@ -6,7 +6,7 @@ import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardRatingUser} from "../../modules/board/board";
+import {decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardComments, patchBoardRatingUser} from "../../modules/board/board";
 import { deleteUserLikes, postRatingBoards, postUserLikes } from "../../modules/user/user";
 
 const BoardComponentBlock = styled.div`
@@ -172,6 +172,16 @@ function Board({ board }) {
     }
   }, []);
 
+  //댓글로직
+  const [comment,setComment] = useState('');
+  const onChangeComment = (e) => {
+    setComment(e.target.value);
+  };
+  const onClickToComment = async () => {
+    await dispatch(patchBoardComments({ boardId: board.id, text: comment, author: user.id }));
+  }
+
+
   if (board) return (
     <BoardComponentBlock>
       <h4><RatingStars rating={parseFloat(calculateAverageRating(ratingUser))} /></h4>
@@ -225,8 +235,9 @@ function Board({ board }) {
           placeholder="당신의 생각을 댓글로 표현하세요"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
+          onChange={onChangeComment}
         />
-        <Button variant="primary" id="button-addon2">
+        <Button variant="primary" id="button-addon2" onClick={onClickToComment}>
           댓글달기
         </Button>
       </InputGroup>
@@ -236,7 +247,7 @@ function Board({ board }) {
           <div className="comments" key={comment.id}>
             <h3>
               <strong>
-                🎸{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}
+                🎸{comment.author && (comment.author.length > 8 ? comment.author.substring(0, 8) + '...' : comment.author)}
               </strong>
             </h3>
             {comment.text}

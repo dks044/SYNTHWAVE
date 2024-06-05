@@ -203,7 +203,7 @@ export const commentBoardAPI = async (id, text, author) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ ratingUser: newBoardComments }),
+    body: JSON.stringify({ comments: newBoardComments }), 
   });
 
   if (!response.ok) {
