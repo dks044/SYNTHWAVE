@@ -62,7 +62,7 @@ export const patchBoardAPI = async (id, updatedBoard, file) => {
 
   // 게시글 데이터(이미지 Base64 문자열 포함)를 서버에 전송하여 기존 게시글을 업데이트
   const response = await fetch(`http://localhost:4000/boards/${id}`, {
-    method: 'PATCH', 
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -79,7 +79,7 @@ export const patchBoardAPI = async (id, updatedBoard, file) => {
 // board 삭제 API
 export const deleteBoardAPI = async (id) => {
   const response = await fetch(`http://localhost:4000/boards/${id}`, {
-    method: 'DELETE', 
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -89,11 +89,11 @@ export const deleteBoardAPI = async (id) => {
     throw new Error('Failed to delete board');
   }
 
-  return await response.json(); 
+  return await response.json();
 };
 
 // board 좋아요 증감
-export const IncreaseLikesBoardAPI = async(id) => {
+export const IncreaseLikesBoardAPI = async (id) => {
   const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
 
   if (!boardResponse.ok) {
@@ -119,7 +119,7 @@ export const IncreaseLikesBoardAPI = async(id) => {
 };
 
 // board 좋아요 감소
-export const DecreaseLikesBoardAPI = async(id) => {
+export const DecreaseLikesBoardAPI = async (id) => {
   const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
 
   if (!boardResponse.ok) {
@@ -145,7 +145,7 @@ export const DecreaseLikesBoardAPI = async(id) => {
 };
 
 // board rating 피드백
-export const ratingBoardAPI = async(id, userId, rating) => {
+export const ratingBoardAPI = async (id, userId, rating) => {
   const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
 
   if (!boardResponse.ok) {
@@ -159,7 +159,10 @@ export const ratingBoardAPI = async(id, userId, rating) => {
     userId: userId,
     rating: rating
   };
-
+  // 유저 ID와 평점이 유효한지 확인
+  if (!userId || !rating || rating < 1 || rating > 5) {
+    throw new Error('Invalid user ID or rating');
+  }
   const newBoardRatingUser = [...boardRatingUser, userRating];
 
   const response = await fetch(`http://localhost:4000/boards/${id}`, {

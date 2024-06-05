@@ -87,6 +87,8 @@ function WriteComponent() {
       content,
       comments: [],
       likes: 0,
+      likeUsers: [],
+      ratingUser: [],
       createDate: currentTime
     };
 

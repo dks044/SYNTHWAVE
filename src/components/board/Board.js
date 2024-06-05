@@ -53,10 +53,14 @@ function Board({ board }) {
   const ratingBoards = useSelector((state) => state.user.ratingBoards?.data || []);
   const userLikes = useSelector((state) => state.user.likeBoards?.data || []);
   const [likes,setLikes] = useState(0);
+  const [ratingUser,setRatingUser] = useState([]);
 
   useEffect(()=>{
     if(board && board.likes !== undefined) {
       setLikes(board.likes);
+    }
+    if(board && board.ratingUser !== undefined) {
+      setRatingUser(board.ratingUser);
     }
   },[board])
 
@@ -135,13 +139,25 @@ function Board({ board }) {
     setRating(Number(e.target.value));
   };
 
-  //레이팅 함수
+  //레이팅 로직
   const [ratingText,setRatingText] = useState('');
   const onClickToRating = async () => {
+    const userRating = {
+      userId: user.id,
+      rating: rating
+    };
+
+    // 별점 유효성 검사
+    if(rating < 1 || rating > 5) {
+      alert('별점은 1에서 5 사이로 주세요.');
+      return;
+    }
     //레이팅(별점) 준적이 없을경우
     if(!ratingBoards.includes(board.id)){
       await dispatch(postRatingBoards(board.id)); //레이팅(평가) 한 게시물id로 등록
       await dispatch(patchBoardRatingUser({ boardId: board.id, userId: user.id, rating: rating }));
+      setRatingUser([...ratingUser, userRating]);
+      console.log(ratingUser);
     }else{
       setRatingText('이미 별점을 주신 게시글입니다.');
       return;
@@ -158,7 +174,7 @@ function Board({ board }) {
 
   if (board) return (
     <BoardComponentBlock>
-      <h4><RatingStars rating={parseFloat(calculateAverageRating(board.ratingUser))} /></h4>
+      <h4><RatingStars rating={parseFloat(calculateAverageRating(ratingUser))} /></h4>
       <h1>{board.title} <Badge className="customBadge" bg="info">{category}</Badge>
         <PatchDeleteBlock displayPatchDelete={displayPatchDelete}>
           <Button onClick={() => navigate(`/boards/${board.id}/patch`)} variant="success" size="sm" >
@@ -189,6 +205,7 @@ function Board({ board }) {
         </Button>
         <LikeAndFeedBackBarRating>
           <Form.Select size="sm" onChange={onChangeRating}>
+            <option >⭐별점주기⭐</option>
             <option value={5}>⭐⭐⭐⭐⭐</option>
             <option value={4}>⭐⭐⭐⭐</option>
             <option value={3}>⭐⭐⭐</option>

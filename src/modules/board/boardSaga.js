@@ -145,7 +145,8 @@ function* decreaseBoardLikesSaga(action){
 //레이팅 업데이트
 function* patchBoardRatingUserSaga(action){
   try {
-    const response = yield call(boardAPI.ratingBoardAPI,action.payload);
+    console.log(action.payload);
+    const response = yield call(boardAPI.ratingBoardAPI, action.payload.boardId, action.payload.userId, action.payload.rating);
     yield put ({
       type: "board/patchBoardRatingUserSuccess",
       payload : response
