@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, ListGroup, Row, Table } from "react-bootstrap";
+import { Badge, Card, Col, ListGroup, Row, Table } from "react-bootstrap";
 import styled from "styled-components";
 import RatingStars from "../../lib/RatingStars";
 import SimpleDataText from "../../lib/SimpleDataText";
@@ -69,7 +69,7 @@ function Boards({ boards, viewMode }) {
               <tr key={board.id}>
                 <td>{index + 1}</td>
                 <td>{board.category}</td>
-                <td className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}</td>
+                <td className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}<Badge bg="primary">{board.comments && board.comments.length}</Badge></td>
                 <td>{board.author && (board.author.length > 8 ? board.author.substring(0, 8) + '...' : board.author)}</td>
                 <td><SimpleDataText dateString={board.createDate} /></td>
                 <td>{board.likes}</td>
