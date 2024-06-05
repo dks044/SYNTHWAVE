@@ -179,3 +179,36 @@ export const ratingBoardAPI = async (id, userId, rating) => {
 
   return await response.json();
 };
+
+// 댓글달기
+export const commentBoardAPI = async (id, text, author) => {
+  const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
+
+  if (!boardResponse.ok) {
+    throw new Error('Failed to fetch board');
+  }
+
+  const board = await boardResponse.json();
+  const boardComments = board.comments || [];
+
+  const comment = {
+    text: text,
+    author: author
+  };
+
+  const newBoardComments = [...boardComments, comment];
+
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ratingUser: newBoardComments }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update board');
+  }
+
+  return await response.json();
+};

@@ -100,20 +100,18 @@ const boardSlice = createSlice({
       ...state,
       boards: reducerUtils.error(action.error),
     }),
-    patchBoardRatingUser: (state) => ({
+    patchBoardComments: (state) => ({
       ...state,
       boards: reducerUtils.loading(),
     }),
-    patchBoardRatingUserSuccess: (state, action) => ({
+    patchBoardCommentsSuccess: (state, action) => ({
       ...state,
       boards: reducerUtils.success(action.payload),
     }),
-    patchBoardRatingUserError: (state, action) => ({
+    patchBoardCommentsError: (state, action) => ({
       ...state,
       boards: reducerUtils.error(action.error),
     }),
-
-
   }
 })
 
@@ -141,7 +139,10 @@ export const {
   decreaseBoardLikesError,
   patchBoardRatingUser,
   patchBoardRatingUserSuccess,
-  patchBoardRatingUserError
+  patchBoardRatingUserError,
+  patchBoardComments,
+  patchBoardCommentsSuccess,
+  patchBoardCommentsError
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
