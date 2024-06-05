@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Card, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Button, Card, CloseButton, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { postBoard } from "../../modules/board/board";
 import styled from "styled-components";
@@ -111,6 +111,20 @@ function WriteComponent() {
     }
   };
 
+  //close 버튼 누르면 파일 입력 초기화
+  // 파일 입력칸을 초기화하기 위한 ref 추가
+  const fileInputRef = useRef(null);
+  const onClickToFileInputInital = () => {
+    setPreviewUrl('');
+    setFileName(null);
+    setErrorText('');
+    setIsFileError(false);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''; // 파일 입력 초기화
+    }
+  }
+
+
   return (
     <WriteComponentBlock>
       <Row className="justify-content-md-center">
@@ -141,8 +155,8 @@ function WriteComponent() {
               </Form.Select>
             </Form.Group>
             <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>썸네일</Form.Label>
-              <Form.Control type="file" name="thumbnail" onChange={handleFileChange} />
+              <Form.Label>썸네일</Form.Label><CloseButton onClick={onClickToFileInputInital}/>
+              <Form.Control type="file" name="thumbnail" onChange={handleFileChange} ref={fileInputRef}/>
               {/*이미지 미리보기*/}
               {previewUrl &&
                 <CardWrapper>
