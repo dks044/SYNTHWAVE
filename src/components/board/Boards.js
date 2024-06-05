@@ -29,7 +29,12 @@ function Boards({boards, viewMode}){
       {viewMode === 'card' && 
         boards && boards.map((board)=>(
           <Card style={{ width: '14rem' }} key={board.id}>
-            <Card.Img className="navigate" onClick={() => navigate(`/boards/${board.id}`)} variant="top" src={board.thumbnail} />
+            {board.thumbnail && (
+              <Card.Img className="navigate" onClick={() => navigate(`/boards/${board.id}`)} variant="top" src={board.thumbnail} />
+            )}
+            {!board.thumbnail && (
+              <Card.Img className="navigate" onClick={() => navigate(`/boards/${board.id}`)} variant="top" src={"https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg"} />
+            )}
             <Card.Body>
               <Card.Title className="navigate" onClick={() => navigate(`/boards/${board.id}`)} >{board.title}</Card.Title>
               <Card.Text>

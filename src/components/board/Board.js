@@ -6,7 +6,7 @@ import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {deleteBoard} from "../../modules/board/board";
+import {decreaseBoardLikes, deleteBoard, increaseBoardLikes} from "../../modules/board/board";
 import { deleteUserLikes, postUserLikes } from "../../modules/user/user";
 
 const BoardComponentBlock = styled.div`
@@ -45,7 +45,10 @@ function Board({ board }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user?.data);
+
   const userLikes = useSelector((state) => state.user.likeBoards?.data);
+  const [likes,setLikes] = useState(0);
+
   const [displayPatchDelete, setDisplayPatchDelete] = useState(false);
   //modal
   const [show, setShow] = useState(false);
@@ -87,16 +90,19 @@ function Board({ board }) {
   //좋아요 함수
   const onClickToLike = async () => {
     //좋아요 누른적이 없을 경우
-    if(!userLikes.includes(board.id)){ // 'includes'로 변경
+    if (!userLikes.includes(board.id)) {
       await dispatch(postUserLikes(board.id));
-      console.log(userLikes);
+      await dispatch(increaseBoardLikes(board.id));
+      setLikes((prevLikes) => prevLikes + 1); 
     }
     //좋아요 누른적이 있을 경우
-    else { // 'if'를 'else'로 변경하여 중복 실행 방지
+    else {
       await dispatch(deleteUserLikes(board.id)); //해당 좋아요한 게시글의 id 삭제
-      console.log(userLikes);
+      await dispatch(decreaseBoardLikes(board.id));
+      setLikes((prevLikes) => prevLikes - 1); 
     }
   }
+  
 
   useEffect(() => {
     if (board) {
@@ -122,7 +128,12 @@ function Board({ board }) {
       <span>
         <DateText><SimpleDataText dateString={board.createDate} /> | <strong>작성자 : {board.author}</strong></DateText>
       </span>
-      <Image className="customImage" src={board.thumbnail} rounded />
+      {board.thumbnail && (
+        <Image className="customImage" src={board.thumbnail} rounded />
+      )}
+      {!board.thumbnail && (
+        <Image className="customImage" src={"https://cdn.pixabay.com/photo/2024/05/18/16/37/ai-generated-8770612_1280.jpg"} rounded />
+      )}
       <StyledTextArea>
         {board.content}
 
@@ -130,7 +141,7 @@ function Board({ board }) {
       <br /><br /><br /><br />
       <LikeAndFeedBackBar>
         <Button ref={target} variant="light" onClick={onClickToLike}>
-          <strong>😀{board.likes}😀<br />👍좋아요👍</strong>
+          <strong>😀{likes}😀<br />👍좋아요👍</strong>
         </Button>
         <LikeAndFeedBackBarRating>
           <Form.Select size="sm">

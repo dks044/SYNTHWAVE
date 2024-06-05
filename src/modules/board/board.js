@@ -73,7 +73,34 @@ const boardSlice = createSlice({
     deleteBoardError: (state, action) => ({
       ...state,
       boards: reducerUtils.error(action.error),
-    })
+    }),
+
+    increaseBoardLikes: (state) => ({
+      ...state,
+      boards: reducerUtils.loading(),
+    }),
+    increaseBoardLikesSuccess: (state, action) => ({
+      ...state,
+      boards: reducerUtils.success(action.payload),
+    }),
+    increaseBoardLikesError: (state, action) => ({
+      ...state,
+      boards: reducerUtils.error(action.error),
+    }),
+
+    decreaseBoardLikes: (state) => ({
+      ...state,
+      boards: reducerUtils.loading(),
+    }),
+    decreaseBoardLikesSuccess: (state, action) => ({
+      ...state,
+      boards: reducerUtils.success(action.payload),
+    }),
+    decreaseBoardLikesError: (state, action) => ({
+      ...state,
+      boards: reducerUtils.error(action.error),
+    }),
+
 
   }
 })
@@ -93,7 +120,13 @@ export const {
   patchBoardError,
   deleteBoard,
   deleteBoardSuccess,
-  deleteBoardError
+  deleteBoardError,
+  increaseBoardLikes,
+  increaseBoardLikesSuccess,
+  increaseBoardLikesError,
+  decreaseBoardLikes,
+  decreaseBoardLikesSuccess,
+  decreaseBoardLikesError
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
