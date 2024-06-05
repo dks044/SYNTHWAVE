@@ -6,7 +6,7 @@ import RatingStars from "../../lib/RatingStars";
 import './board.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardComments, patchBoardRatingUser } from "../../modules/board/board";
+import { decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardCommentPatch, patchBoardComments, patchBoardRatingUser } from "../../modules/board/board";
 import { deleteUserLikes, postRatingBoards, postUserLikes } from "../../modules/user/user";
 import { FaPen } from "react-icons/fa";
 
@@ -194,11 +194,41 @@ function Board({ board }) {
     await dispatch(patchBoardComments({ boardId: board.id, text: comment, author: user.id }));
     setComment('');
     if (commentRef.current) {
-      commentRef.current.value = ''; 
+      commentRef.current.value = '';
     }
     setComments([...comments, userComment])
   }
+  //댓글수정
+  const [activeCommentId, setActiveCommentId] = useState(null);
+  const [commentText, setCommentText] = useState('');
 
+  const onClickToCommentPatch = (id, text) => {
+    setActiveCommentId(activeCommentId === id ? null : id);
+    setCommentText(text);
+  };
+  const onClickToCommentPatchSubmit = async () => {
+    const modifyComment = {
+      id : activeCommentId,
+      text : commentText,
+      author: user.id
+    }
+
+    await dispatch(patchBoardCommentPatch({
+      boardId: board.id,
+      commentId: activeCommentId,
+      text: commentText,
+      author: user.id
+    }))
+    //화면(페이지)에도 반영
+    const updateBoardComments = comments.map(comment => 
+      comment.id === activeCommentId 
+        ? { ...comment, text: commentText, author: user.id } 
+        : comment
+    );
+    setComments(updateBoardComments);
+    setActiveCommentId(null);
+    setCommentText(null);
+  };
 
   if (board) return (
     <BoardComponentBlock>
@@ -271,11 +301,28 @@ function Board({ board }) {
               </strong>
               {comment.author === user.id && (
                 <CommentPatchDeleteBlock>
-                  <FaPen size={20} />
+                  <FaPen className="commentsPatchDelect" size={20} onClick={() => onClickToCommentPatch(comment.id, comment.text)} />
                 </CommentPatchDeleteBlock>
               )}
             </h3>
-            {comment.text}
+            {activeCommentId !== comment.id ? (
+              <div>{comment.text}</div>
+            ) : (
+              <InputGroup className="mb-3">
+                <Form.Control
+                  as="textarea"
+                  className="customCommentInput"
+                  placeholder="댓글수정"
+                  aria-label="Recipient's username"
+                  aria-describedby="basic-addon2"
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+                />
+                <Button variant="primary" id="button-addon2" onClick={() => onClickToCommentPatchSubmit(comment.id)}>
+                  수정하기
+                </Button>
+              </InputGroup>
+            )}
           </div>
         ))}
       </CommentsBlock>

@@ -34,3 +34,10 @@
 .comments {
   margin-bottom: 3%;
 }
+
+.commentsPatchDelect {
+  cursor: pointer;
+}
+.commentsPatchDelect:hover {
+  color: mediumturquoise;
+}

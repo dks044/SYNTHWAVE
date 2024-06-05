@@ -214,3 +214,37 @@ export const commentBoardAPI = async (id, text, author) => {
 
   return await response.json();
 };
+
+// 댓글수정
+export const commentPatchBoardAPI = async (id, commentId, text, author) => {
+  const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
+
+  if (!boardResponse.ok) {
+    throw new Error('Failed to fetch board');
+  }
+
+  const board = await boardResponse.json();
+  const boardComments = board.comments || [];
+
+  // 특정 commentId를 가진 댓글을 찾아서 수정
+  const newBoardComments = boardComments.map(comment => 
+    comment.id === commentId 
+      ? { ...comment, text: text, author: author } 
+      : comment
+  );
+
+  const response = await fetch(`http://localhost:4000/boards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ comments: newBoardComments }), 
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update board');
+  }
+
+  return await response.json();
+};
+

@@ -164,7 +164,7 @@ function* patchBoardRatingUserSaga(action){
   }
 }
 
-//댓글 업데이트
+//보드에 있는 댓글 업데이트
 function* patchBoardCommentsSaga(action){
   try {
     console.log(action.payload);
@@ -186,6 +186,31 @@ function* patchBoardCommentsSaga(action){
   }
 }
 
+//댓글 수정
+function* patchBoardCommentPatchSaga(action){
+  try {
+    console.log(action.payload);
+    const response = yield call(boardAPI.commentPatchBoardAPI,
+                                action.payload.boardId,
+                                action.payload.commentId,
+                                action.payload.text,
+                                action.payload.author);
+    yield put ({
+      type: "board/patchBoardCommentPatchSuccess",
+      payload : response
+    });
+    // 게시글 목록 갱신
+    yield put({
+      type: "board/getBoards",
+    });
+  } catch (e) {
+    yield put({
+      type: "board/patchBoardCommentPatchError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
 
 function* boardSaga() {
   yield takeEvery("board/getBoards", fetchBoardsSaga);
@@ -197,6 +222,7 @@ function* boardSaga() {
   yield takeEvery("board/decreaseBoardLikes", decreaseBoardLikesSaga);
   yield takeEvery("board/patchBoardRatingUser", patchBoardRatingUserSaga);
   yield takeEvery("board/patchBoardComments", patchBoardCommentsSaga);
+  yield takeEvery("board/patchBoardCommentPatch", patchBoardCommentPatchSaga);
 }
 
 export default boardSaga;
