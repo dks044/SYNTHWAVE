@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import LogoText from "../components/etc/LogoText";
 import LogoComponent from "../components/etc/LogoComponent";
+import { FaGithub } from "react-icons/fa";
+import '../index.css';
 
 const fadeIn = keyframes`
   from {
@@ -35,6 +37,9 @@ const AnimatedText = styled.div`
 
 function HomePage() {
   const [showText, setShowText] = useState(false);
+  const onClickToGithub = () => {
+    window.open('https://github.com/dks044/SYNTHWAVE', '_blank');
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,10 +59,13 @@ function HomePage() {
             <h1><LogoText fontSize={30}/> <strong>에 오신것을 환영합니다</strong></h1>
           </AnimatedText>
           <AnimatedText delay={1.5}>
-            <h2>자유롭게 게시판에 음악 리뷰 글을 작성하며</h2>
+            <h2><strong>자유롭게 게시판에 음악 리뷰 글을 작성하며</strong></h2>
           </AnimatedText>
           <AnimatedText delay={2.0}>
-            <h2>댓글로 여러 의견을 나눠보세요</h2>
+            <h2><strong>댓글로 여러 의견을 나눠보세요</strong></h2>
+          </AnimatedText>
+          <AnimatedText delay={2.2}>
+            <h2><strong><FaGithub onClick={onClickToGithub}  className="homePageGithubIcon" size={100}/></strong></h2>
           </AnimatedText>
         </>
       )}
