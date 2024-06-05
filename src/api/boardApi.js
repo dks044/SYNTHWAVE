@@ -182,7 +182,7 @@ export const ratingBoardAPI = async (id, userId, rating) => {
 };
 
 // 댓글달기
-export const commentBoardAPI = async (id, text, author) => {
+export const commentBoardAPI = async (id, commentId, text, author) => {
   const boardResponse = await fetch(`http://localhost:4000/boards/${id}`);
 
   if (!boardResponse.ok) {
@@ -193,7 +193,7 @@ export const commentBoardAPI = async (id, text, author) => {
   const boardComments = board.comments || [];
 
   const comment = {
-    id: uuidv4(),
+    id: commentId,
     text: text,
     author: author
   };

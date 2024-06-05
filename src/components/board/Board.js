@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { decreaseBoardLikes, deleteBoard, increaseBoardLikes, patchBoardCommentDelete, patchBoardCommentPatch, patchBoardComments, patchBoardRatingUser } from "../../modules/board/board";
 import { deleteUserLikes, postRatingBoards, postUserLikes } from "../../modules/user/user";
 import { FaPen,FaTrashAlt } from "react-icons/fa";
+import { v4 as uuidv4 } from 'uuid';
 
 const BoardComponentBlock = styled.div`
   display: flex;
@@ -187,11 +188,13 @@ function Board({ board }) {
     setComment(e.target.value);
   };
   const onClickToComment = async () => {
+    const commentId = uuidv4();
     const userComment = {
+      id : commentId,
       author: user.id,
       text: comment
     };
-    await dispatch(patchBoardComments({ boardId: board.id, text: comment, author: user.id }));
+    await dispatch(patchBoardComments({ boardId: board.id, commentId : commentId ,text: comment, author: user.id }));
     setComment('');
     if (commentRef.current) {
       commentRef.current.value = '';

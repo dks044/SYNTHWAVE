@@ -1,5 +1,6 @@
 import { call, put, select, take, takeEvery, takeLatest } from "redux-saga/effects";
 import * as boardAPI from "../../api/boardApi";
+import { v4 as uuidv4 } from 'uuid';
 
 function* fetchBoardsSaga(action){
   try {
@@ -168,7 +169,7 @@ function* patchBoardRatingUserSaga(action){
 function* patchBoardCommentsSaga(action){
   try {
     console.log(action.payload);
-    const response = yield call(boardAPI.commentBoardAPI, action.payload.boardId, action.payload.text, action.payload.author);
+    const response = yield call(boardAPI.commentBoardAPI, action.payload.boardId,action.payload.commentId, action.payload.text, action.payload.author);
     yield put ({
       type: "board/patchBoardCommentsSuccess",
       payload : response
