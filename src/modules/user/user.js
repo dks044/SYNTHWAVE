@@ -4,6 +4,7 @@ import { reducerUtils } from "../../lib/asyncUtils";
 const initialState = {
   user: reducerUtils.initial(),
   likeBoards: reducerUtils.initial(),
+  ratingBoards: reducerUtils.initial(),
 };
 
 const userSlice = createSlice({ 
@@ -71,7 +72,18 @@ const userSlice = createSlice({
       ...state,
       likeBoards: reducerUtils.error(action.error),
     }),
-    
+    postRatingBoards: (state) => ({
+      ...state,
+      ratingBoards: reducerUtils.loading(),
+    }),
+    postRatingBoardsSuccess: (state, action) => ({
+      ...state,
+      ratingBoards: reducerUtils.success(action.payload),
+    }),
+    postRatingBoardsError: (state, action) => ({
+      ...state,
+      ratingBoards: reducerUtils.error(action.error),
+    }),
   }
 })
 
@@ -90,7 +102,10 @@ export const {
   getUserLikesError,
   deleteUserLikes,
   deleteUserLikesSuccess,
-  deleteUserLikesError
+  deleteUserLikesError,
+  postRatingBoards,
+  postRatingBoardsSuccess,
+  postRatingBoardsError
 } = userSlice.actions;
 
 export default userSlice.reducer;

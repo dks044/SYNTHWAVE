@@ -92,6 +92,25 @@ function* deleteUserLike({payload}){
   }
 }
 
+function* postRatingBoards({payload}) {
+  try {
+    const ratingBoards = yield select(state => state.user.ratingBoards.data || []);
+    const updatedRatingBoards = [...ratingBoards, payload]; 
+
+    yield put({
+      type: "user/postRatingBoardsSuccess",
+      payload: updatedRatingBoards,
+    });
+  } catch (e) {
+    yield put({
+      type: "user/postRatingBoardsError",
+      error: true,
+      payload: e.message,
+    });
+  }
+}
+
+
 
 function* userSaga(){
   yield takeEvery("user/getUser", fetchUserSaga);
@@ -99,7 +118,7 @@ function* userSaga(){
   yield takeEvery("user/postUserLikes", postUserLike);
   yield takeEvery("user/getUserLikes", fetchUserLike);
   yield takeEvery("user/deleteUserLikes", deleteUserLike);
-
+  yield takeEvery("user/postRatingBoards", postRatingBoards);
 }
 
 export default userSaga;
