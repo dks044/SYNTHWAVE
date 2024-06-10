@@ -18,6 +18,7 @@
     <h1 id="주요-기능">주요 기능</h1>
     <h3>비동기식 검색, 필터, 정렬 기능(카드뷰, 리스트뷰 제공)</h3>
     <img width="50%" height="50%" src="https://github.com/dks044/SYNTHWAVE/assets/74749417/d7dd14e0-593d-434a-a420-67b880a8e9d4" alt="검색필터정렬">
+    <p>Redux Saga를 사용하여 데이터를 렌더링한 후, 검색, 정렬, 필터 기능을 리다이렉트 없이 깔끔하게 사용자에게 제공합니다.</p>
     <br>
     <h3>글쓰기 (리다이렉트 없이 바로 보임)</h3>
     <img width="50%" height="50%" src="https://github.com/dks044/SYNTHWAVE/assets/74749417/9da7c832-12e0-4d30-8f91-f60e38c1c2da" alt="글쓰기">
