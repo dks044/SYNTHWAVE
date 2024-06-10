@@ -26,7 +26,7 @@
     <h3>수정하기(작성자만 가능)</h3>
     <img width="50%" height="50%" src="https://github.com/dks044/SYNTHWAVE/assets/74749417/14f6ad59-57db-4190-a55a-b9d890db3085" alt="수정하기">
     <br>
-    <h3>비동기식 좋아요, 별점 기능</h3>
+    <h3>좋아요, 별점 기능</h3>
     <img width="50%" height="50%" src="https://github.com/dks044/SYNTHWAVE/assets/74749417/4af83346-9c4f-4c61-a8be-4d02ad9f7345" alt="좋아요별점">
     <p>현재 사용자(브라우저)가 좋아요를 누르고, 한번 더 누르면 취소됨 (서버에 있는 게시글 데이터까지 반영)</p>
     <p>좋아요와 별점이 서버에 있는 데이터에 반영 후, <strong>화면에도 리다이렉트 없이 바로 반영 됩니다.</strong></p>
