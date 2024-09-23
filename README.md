@@ -3,7 +3,7 @@
   <img width="50%" height="50%" src="https://github.com/dks044/SYNTHWAVE/assets/74749417/a332d1be-995f-4c8b-960d-c85f874f6df3" alt="홈페이지">
 </div>
 <div align=center>
-  <h1>[과제테스트용] 음악 관련 익명 리뷰 사이트</h1>
+  <h1>음악 관련 익명 리뷰 사이트</h1>
   <h3>SPA 원칙을 최대한 준수하면서 구현했습니다.</h3>
   <h4>(웹이 아닌 앱 느낌이 나게끔)</h4>
   <h3>백엔드와 협업 한다고 가정하고, json-server를 이용하여 RestFul 설계를 채택했습니다. </h3>
